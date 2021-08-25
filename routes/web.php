@@ -24,3 +24,7 @@ Route::group(['namespace' => 'administrador'], function() {
     Route::resource('/lamina', 'LaminaController');
     Route::resource('/usuario', 'UsuarioController');
 });
+
+Route::group(['namespace' => 'usuario'], function() {
+	Route::resource('/file', 'FileController');
+});

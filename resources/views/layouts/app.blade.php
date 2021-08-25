@@ -17,6 +17,7 @@
     <link href="{{ asset('css/datatables.css') }}" rel="stylesheet" />
     <link href="{{ asset('css/jquery.toast.css') }}" rel="stylesheet" />
     <link href="{{ asset('css/jquery-confirm.css') }}" rel="stylesheet" />
+    <link href="{{ asset('css/cropper.css') }}" rel="stylesheet" />
     <style>
 		.btn-rounded {
 			border-radius: 25px;
@@ -105,6 +106,9 @@
                     <a href="{{ route('lamina.index') }}" class="nav-link" href="#">Laminas</a>
                 </li>
                 <li class="nav-item">
+                    <a href="{{ route('file.index') }}" class="nav-link" href="#">Mis Laminas</a>
+                </li>
+                <li class="nav-item">
                     <a href="{{ route('usuario.index') }}" class="nav-link" href="#">Usuario</a>
                 </li>
             </ul>
@@ -123,6 +127,8 @@
     <script src="{{ asset('js/block_ui.js') }}"></script>
     <script src="{{ asset('js/datatables.js') }}"></script>
     <script src="{{ asset('js/jquery.toast.js') }}"></script>
-    <script src="{{ asset('js/jquery-confirm.js') }}"></script>  
+    <script src="{{ asset('js/jquery-confirm.js') }}"></script> 
+    <script src="{{ asset('js/cropper.js') }}"></script> 
+    <!-- <script src="{{ asset('js/main.js') }}"></script>   -->
     @yield('page-js-script')
 </html>

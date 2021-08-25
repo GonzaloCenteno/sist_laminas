@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTbluscaTable extends Migration
+class CreateTbluslaTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateTbluscaTable extends Migration
      */
     public function up()
     {
-        Schema::create('tblusca', function (Blueprint $table) {
+        Schema::create('tblusla', function (Blueprint $table) {
             $table->bigInteger('tbllmnacdgo')->unsigned()->required();
             $table->bigInteger('id')->unsigned()->required();
 
@@ -29,6 +29,6 @@ class CreateTbluscaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tblusca');
+        Schema::dropIfExists('tblusla');
     }
 }
