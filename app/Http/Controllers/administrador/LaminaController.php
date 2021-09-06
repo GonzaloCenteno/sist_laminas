@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Tbllmna;
 use App\Models\Tblctga;
-// use App\Http\Requests\AreasRequest;
+use App\Http\Requests\TbllmnaRequest;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
@@ -25,8 +25,9 @@ class LaminaController extends Controller
         //
     }
 
-    public function store(Request $request)
+    public function store(TbllmnaRequest $request)
     {
+        if(!$request->ajax()) return redirect('/');
         $request['tbllmnauuid'] = Str::random(12);
         $request['tbllmnafech'] = date('Y-m-d');
         return Tbllmna::create($request->all());
@@ -42,7 +43,7 @@ class LaminaController extends Controller
         //
     }
 
-    public function update(Request $request, $are_id)
+    public function update(TbllmnaRequest $request, $are_id)
     {
         
     }

@@ -15,7 +15,7 @@ class Tbllmna extends Model
     protected $primaryKey='tbllmnacdgo';
 
     protected $fillable = [
-        'tbllmnacoda','tbllmnanomb','tbllmnadesc','tbllmnauuid','tbllmnaimgn','tbllmnafech','tbllmnatipo','tblctgacdgo'
+        'tbllmnacoda','tbllmnanomb','tbllmnadesc','tbllmnauuid','tbllmnaimgn','tbllmnafech','tbllmnatipo','tblctgacdgo','tbllmnafvrt','tbllmnatags'
     ];
 
     public function categoria()
@@ -30,5 +30,13 @@ class Tbllmna extends Model
             $fileserver = $bandera.'_'.$filename;
             $imagen->move(public_path('adjuntos/'), htmlentities($fileserver));
             $this->attributes['tbllmnaimgn'] = 'adjuntos/'.$fileserver;
+    }
+
+    public function getTbllmnatipoAttribute($value)
+    {
+        switch ($value) {
+          case "F": return 'FREE';break;
+          case "O": return 'ORIGINAL';break;
+        }
     }
 }

@@ -24,7 +24,7 @@ class CategoriaController extends Controller
 
     public function store(TblctgaRequest $request)
     {
-        // if(!$request->ajax()) return redirect('/');
+        if(!$request->ajax()) return redirect('/');
         return Tblctga::create($request->all());
     }
 

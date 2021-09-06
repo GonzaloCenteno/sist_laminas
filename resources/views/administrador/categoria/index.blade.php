@@ -4,12 +4,13 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-12">
-            <form method="POST" action="{{ route('categoria.store') }}" class="text-center" novalidate>
+        <div id="registroCategoria" class="col d-none">
+            <form id="FormularioCrearCategoria" method="POST" action="{{ route('categoria.store') }}" class="text-center" novalidate>
                 @csrf
                 <div class="md-form md-outline form-sm">
                     <input type="text" id="tblctgadesc" name="tblctgadesc" autocomplete="off" class="form-control" autofocus>
                     <label for="tblctgadesc">DESCRIPCION CATEGORIA.-</label>
+                    <small id="error_tblctgadesc" class="form-text text-muted text-left text-red"></small>
                 </div>
                 <div class="row">
                     <div class="col-6 offset-2">
@@ -17,6 +18,13 @@
                     </div>
                 </div>
             </form>
+        </div>
+        <div class="container">
+            <div class="row justify-content-md-center">
+                <div class="col col-lg-2 text-center">
+                    <i id="mostrarCategoria" class="fa fa-plus-circle fa-4x" aria-hidden="true" style="cursor: pointer"></i>
+                </div>
+            </div>
         </div>
     </div>
     <div class="row">
@@ -54,7 +62,7 @@
         scrollX: true,
         scrollCollapse: true,
         ajax:  '{{ route('categoria.show',1) }}',
-        order: [[ 0, "asc" ]],
+        order: [[ 0, "desc" ]],
         columns: [
             { data: 'tblctgacdgo', class:'text-center'},
             { data: 'tblctgadesc' },
@@ -74,6 +82,37 @@
                 next:     'Siguiente'
             }
         }
+    });
+
+    $("#mostrarCategoria").click(function(){
+        $("#registroCategoria").removeClass('d-none');
+        $("#registroCategoria").addClass('d-block');
+    });
+
+    //$("#material").addClass("active");
+
+    $("#tblctgadesc").on('focus', function () {
+        limpiarErrores($(this).attr('id'));
+    });
+
+    $('#FormularioCrearCategoria').submit(function(e){
+        e.preventDefault();
+        $.ajax({
+            url: $(this).attr('action'),
+            type: 'POST',
+            dataType: 'json',
+            data: new FormData($(this)[0]),
+            processData: false,
+            contentType: false,
+            success: function (data) 
+            {
+                $("#tblctgadesc").val('');
+                $("#registroCategoria").removeClass('d-block');
+                $("#registroCategoria").addClass('d-none');
+                $('#tblcategoria').DataTable().ajax.reload();
+                alertas(4);
+            }
+        });
     });
 </script>
 @stop

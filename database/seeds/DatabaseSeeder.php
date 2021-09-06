@@ -12,5 +12,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call(Tblctga::class);
+        $this->call(Tblusro::class);
+        $this->call(Tblplan::class);
     }
 }

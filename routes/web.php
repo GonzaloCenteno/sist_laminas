@@ -15,16 +15,17 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('auth.login');
-});
+})->name('main');
 
 Auth::routes();
 
-Route::group(['namespace' => 'administrador'], function() {
+Route::group(['namespace' => 'administrador', 'middleware' => ['auth', 'acceso', 'web']], function() {
 	Route::resource('/categoria', 'CategoriaController');
     Route::resource('/lamina', 'LaminaController');
     Route::resource('/usuario', 'UsuarioController');
+    Route::resource('/plan', 'PlanController');
 });
 
-Route::group(['namespace' => 'usuario'], function() {
+Route::group(['namespace' => 'usuario', 'middleware' => ['auth', 'acceso', 'web']], function() {
 	Route::resource('/file', 'FileController');
 });

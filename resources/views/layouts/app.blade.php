@@ -17,6 +17,7 @@
     <link href="{{ asset('css/datatables.css') }}" rel="stylesheet" />
     <link href="{{ asset('css/jquery.toast.css') }}" rel="stylesheet" />
     <link href="{{ asset('css/jquery-confirm.css') }}" rel="stylesheet" />
+    <link href="{{ asset('css/sweetalert2.css') }}" rel="stylesheet">
     <link href="{{ asset('css/cropper.css') }}" rel="stylesheet" />
     <style>
 		.btn-rounded {
@@ -57,6 +58,12 @@
             background-color: #1c4c9c !important;
             color: #fff !important;
         }
+        .text-red {
+            color: red !important;
+        }
+        .input-danger {
+            border: 1px solid red !important;
+        }
 	</style>
 </head>
 <body>
@@ -65,10 +72,10 @@
             @yield('content-login')
         </div>
     @else
-        <nav class="navbar navbar-expand-lg navbar-dark primary-color">
+        <nav class="navbar navbar-expand-lg navbar-dark indigo fixed-top">
 
             <!-- Navbar brand -->
-            <a class="navbar-brand" href="#"><img src="{{ asset('img/logo-parrot.png') }}" class="img-fluid"></a>
+            <a class="navbar-brand" href="#"><img src="{{ asset('img/logo-parrot.png') }}" height="60" class="d-inline-block align-top"></a>
 
             <!-- Collapse button -->
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
@@ -76,48 +83,59 @@
             <span class="navbar-toggler-icon"></span>
             </button>
 
-
-            <a class="dropdown-item" href="{{ route('logout') }}"
-                onclick="event.preventDefault();
-                                document.getElementById('logout-form').submit();">
-                {{ __('Logout') }}
-            </a>
-
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                @csrf
-            </form>
-            {{ Auth::user()->name }}      
-
             <!-- Collapsible content -->
             <div class="collapse navbar-collapse" id="basicExampleNav">
+                <!-- Links -->
+                <ul class="navbar-nav mr-auto">
+                    @if(Auth::user()->tblusrotipo == 'ADM' || Auth::user()->tblusrotipo == 'SPA')
+                        <li class="nav-item">
+                            <a href="{{ route('plan.index') }}" class="nav-link" href="#">Planes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('categoria.index') }}" class="nav-link" href="#">Categorias</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('lamina.index') }}" class="nav-link" href="#">Laminas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('usuario.index') }}" class="nav-link" href="#">Usuarios</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('usuario.index') }}" class="nav-link" href="#">Facturas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('file.index') }}" class="nav-link" href="#">Mis Laminas</a>
+                        </li>
+                    @else
+                        <li class="nav-item">
+                            <a href="{{ route('file.index') }}" class="nav-link" href="#">Mis Laminas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('file.index') }}" class="nav-link" href="#">Mis Favoritos</a>
+                        </li>
+                    @endif
+                </ul>
+                <ul class="navbar-nav ml-auto nav-flex-icons">
+                    <li class="nav-item">
+                        <span class="nav-link">Bienvenido: {{ Auth::user()->tblusronomb }}</span>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-sm btn-rounded btn-secondary waves-effect nav-link" href="{{ route('logout') }}"
+                            onclick="event.preventDefault();
+                                            document.getElementById('logout-form').submit();">CERRAR SESION</a>
 
-            <!-- Links -->
-            <ul class="navbar-nav mr-auto">
-                
-                <li class="nav-item active">
-                <a class="nav-link" href="#">Home
-                    <span class="sr-only">(current)</span>
-                </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ route('categoria.index') }}" class="nav-link" href="#">Categorias</a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ route('lamina.index') }}" class="nav-link" href="#">Laminas</a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ route('file.index') }}" class="nav-link" href="#">Mis Laminas</a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ route('usuario.index') }}" class="nav-link" href="#">Usuario</a>
-                </li>
-            </ul>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
+                    </li>
+                </ul>
+            </div>
             <!-- Links -->
         </nav>
         <!--/.Navbar-->
     @endguest 
 
-    <main class="py-4">
+    <main class="py-5 my-5">
         @yield('content')
     </main>
 </body>
@@ -128,7 +146,134 @@
     <script src="{{ asset('js/datatables.js') }}"></script>
     <script src="{{ asset('js/jquery.toast.js') }}"></script>
     <script src="{{ asset('js/jquery-confirm.js') }}"></script> 
+    <script src="{{ asset('js/sweetalert2.js') }}"></script>
     <script src="{{ asset('js/cropper.js') }}"></script> 
-    <!-- <script src="{{ asset('js/main.js') }}"></script>   -->
+    
+    <script>
+        $(function () {
+            $.ajaxSetup({
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                beforeSend:function()
+                {            
+                    alertas(1);
+                },
+                error: function (x, status, error) {
+                    if (x.status == 422) {
+                        alertas(3);
+                        var data = x.responseJSON.errors;
+                        for(let i in data){
+                            mostrarErrores(i,data[i][0]);
+                        }
+                    }
+                    else {
+                        swal({
+                            type: 'error',
+                            title: 'OCURRIO UN PROBLEMA',
+                            html: x.responseText,
+                            allowOutsideClick: false,
+                            allowEscapeKey:false,
+                            confirmButtonColor: '#3085d6',
+                            confirmButtonText: 'ACEPTAR'
+                        });
+                    }
+                }
+            });
+        });
+
+        function limpiarErrores(nombre) {
+            $("#error_"+nombre).hide();
+            $("#error_"+nombre).text('');
+            $("#"+nombre).removeClass('input-danger is-invalid');
+        }
+
+        function mostrarErrores(nombre, error) {
+            $("#error_"+nombre).show();
+            $("#error_"+nombre).text(error);
+            $("#"+nombre).addClass('input-danger is-invalid');
+        }
+
+        function alertas(tipo, url) {
+            if (tipo === 1) {
+                swal({
+                    title: "PROCESANDO INFORMACION",
+                    allowOutsideClick: false,
+                    allowEscapeKey:false,
+                    allowEnterKey:false,
+                    showConfirmButton: false,
+                    onOpen: function () {
+                      swal.showLoading()
+                    }
+                  }).then(
+                    function () {},
+                    function (dismiss) {
+                      if (dismiss === 'timer') {
+                        console.log('I was closed by the timer')
+                      }
+                    }) 
+            } else if(tipo === 2) {
+                let timerInterval
+                swal({
+                    type: 'success',
+                    title: 'EXITO',
+                    timer: 1600,
+                    allowOutsideClick: false,
+                    allowEscapeKey:false,
+                    showConfirmButton: false,
+                    onOpen: () => {
+                        timerInterval = setInterval(() => {
+                        }, 100)
+                    },
+                    onClose: () => {
+                        var ruta = "{{URL::to(':id')}}";
+                        ruta = ruta.replace(':id', url);
+                        window.location.href = ruta;
+                        clearInterval(timerInterval)
+                    }
+                });   
+            } else if(tipo === 3) {
+                swal({
+                    type: 'warning',
+                    title: 'FALTA COMPLETAR DATOS EN EL FORMULARIO',
+                    timer: 1200,
+                    allowOutsideClick: false,
+                    allowEscapeKey:false,
+                    showConfirmButton: false,
+                    onOpen: () => {
+                        timerInterval = setInterval(() => {
+                        }, 100)
+                    },
+                    onClose: () => {
+                        clearInterval(timerInterval)
+                    }
+                });
+            } else if(tipo === 4) {
+                swal({
+                    type: 'success',
+                    title: 'EXITO',
+                    timer: 1400,
+                    allowOutsideClick: false,
+                    allowEscapeKey:false,
+                    showConfirmButton: false,
+                    onOpen: () => {
+                        timerInterval = setInterval(() => {
+                        }, 100)
+                    },
+                    onClose: () => {
+                        clearInterval(timerInterval)
+                    }
+                });   
+            } else {
+                swal({
+                    type: 'error',
+                    title: 'OCURRIO UN PROBLEMA',
+                    allowOutsideClick: false,
+                    allowEscapeKey:false,
+                    confirmButtonColor: '#3085d6',
+                    confirmButtonText: 'ACEPTAR'
+                }); 
+            }
+        }
+    </script>
+
     @yield('page-js-script')
 </html>

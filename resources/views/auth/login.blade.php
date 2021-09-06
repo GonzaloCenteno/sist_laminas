@@ -16,7 +16,7 @@
                         @csrf
                         <div class="md-form md-outline form-sm input-with-pre-icon">
                             <i class="fa fa-user input-prefix"></i>
-                            <input type="text" id="email" name="email" autocomplete="off" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" autofocus>
+                            <input type="text" id="email" name="email" autocomplete="off" class="form-control @error('email') input-danger is-invalid @enderror" value="{{ old('email') }}" autofocus>
                             <label for="email">Usuario</label>
                             @error('email')
                                 <span class="invalid-feedback" role="alert">
@@ -26,7 +26,7 @@
                         </div>
                         <div class="md-form md-outline form-sm input-with-pre-icon">
                             <i class="fa fa-lock input-prefix"></i>
-                            <input type="password" id="password" name="password" autocomplete="off" class="form-control @error('password') is-invalid @enderror">
+                            <input type="password" id="password" name="password" autocomplete="off" class="form-control @error('password') input-danger is-invalid @enderror">
                             <label for="password">Contraseña</label>
                             @error('password')
                                 <span class="invalid-feedback" role="alert">

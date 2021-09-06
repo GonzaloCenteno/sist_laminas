@@ -21,6 +21,8 @@ class CreateTbllmnaTable extends Migration
             $table->text('tbllmnauuid');
             $table->text('tbllmnaimgn');
             $table->date('tbllmnafech');
+            $table->text('tbllmnatags');
+            $table->enum('tbllmnafvrt',['A','I'])->default('I');
             $table->enum('tbllmnatipo',['O','F'])->default('O');
             $table->bigInteger('tblctgacdgo')->unsigned();
             $table->timestamps();

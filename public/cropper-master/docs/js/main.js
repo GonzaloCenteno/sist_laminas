@@ -5,25 +5,9 @@ $(function () {
   var URL = window.URL || window.webkitURL;
   var $image = $('#image');
   var $download = $('#download');
-  var $dataX = $('#dataX');
-  var $dataY = $('#dataY');
-  var $dataHeight = $('#dataHeight');
-  var $dataWidth = $('#dataWidth');
-  var $dataRotate = $('#dataRotate');
-  var $dataScaleX = $('#dataScaleX');
-  var $dataScaleY = $('#dataScaleY');
   var options = {
     aspectRatio: 16 / 9,
-    preview: '.img-preview',
-    crop: function (e) {
-      $dataX.val(Math.round(e.detail.x));
-      $dataY.val(Math.round(e.detail.y));
-      $dataHeight.val(Math.round(e.detail.height));
-      $dataWidth.val(Math.round(e.detail.width));
-      $dataRotate.val(e.detail.rotate);
-      $dataScaleX.val(e.detail.scaleX);
-      $dataScaleY.val(e.detail.scaleY);
-    }
+    preview: '.img-preview'
   };
   var originalImageURL = $image.attr('src');
   var uploadedImageName = 'cropped.jpg';

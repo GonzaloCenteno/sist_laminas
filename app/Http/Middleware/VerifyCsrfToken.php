@@ -2,10 +2,13 @@
 
 namespace App\Http\Middleware;
 
+use Closure;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken as Middleware;
+use Illuminate\Session\TokenMismatchException;
 
 class VerifyCsrfToken extends Middleware
 {
+    protected $addHttpCookie = true;
     /**
      * The URIs that should be excluded from CSRF verification.
      *
@@ -14,4 +17,16 @@ class VerifyCsrfToken extends Middleware
     protected $except = [
         //
     ];
+
+    public function handle($request, Closure $next)
+    {
+        try {
+            return parent::handle($request, $next);
+        }
+        catch (TokenMismatchException $exception) {
+            return redirect()->back()->withErrors([
+                'message' => 'TU SESSION HA EXPIRADO VOLVER A INTENTAR',
+            ]);
+        }
+    }
 }
