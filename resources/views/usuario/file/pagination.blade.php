@@ -23,7 +23,7 @@
                         <a href="{{ route('file.edit', $lamina->tbllmnauuid ) }}" class="btn btn-sm btn-outline-danger btn-rounded btn-block waves-effect">EDITAR</a>
                     </div>
                     <div class="col-6">
-                        <a class="btn btn-sm btn-outline-danger btn-rounded btn-block waves-effect">DESCARGA</a>
+                        <a href="{{ route('file.show', $lamina->tbllmnauuid) }}?tipo=1" class="btn btn-sm btn-outline-danger btn-rounded btn-block waves-effect">DESCARGA</a>
                     </div>
                 </div>
             </div>
@@ -31,7 +31,9 @@
     </div>
 @endforeach
 <div class="container pt-5">
-    <div class="row justify-content-md-center">
-        {!! $laminas->links() !!}
+    <div class="col-12">
+        <div class="row justify-content-md-center">
+            {!! $laminas->links() !!}
+        </div>
     </div>
 </div>

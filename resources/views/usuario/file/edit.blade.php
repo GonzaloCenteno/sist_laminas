@@ -189,14 +189,8 @@
       </div> -->
   </div>
   <div class="row">
-    <div class="col-8">
+    <div class="col-12">
         <img id="image" src="{{ asset($lamina->tbllmnaimgn) }}" class="img-fluid" alt="Picture">
-    </div>
-    <div class="col-4">
-      <div class="docs-preview clearfix">
-          <div class="img-preview preview-lg"></div>
-          <div class="img-preview preview-md"></div>
-        </div>
     </div>
   </div>
 </div>

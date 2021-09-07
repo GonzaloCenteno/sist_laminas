@@ -66,7 +66,7 @@
         }
 	</style>
 </head>
-<body>
+<body @guest style="background-size: cover !important;background-image:url({{ asset('img/FondoInicio.jpg') }}); opacity: 0.85;" @endguest >
     @guest
         <div class="col-xs-12 col-sm-12 col-md-10 col-lg-6 offset-md-1 offset-lg-3 pt-3 mt-5">
             @yield('content-login')
@@ -116,6 +116,14 @@
                     @endif
                 </ul>
                 <ul class="navbar-nav ml-auto nav-flex-icons">
+                    @if(Auth::user()->tblusrotipo == 'USR')
+                        @php $plan = \App\Models\Tbluspl::with('plan')->where([['tblusrocdgo',Auth::user()->tblusrocdgo],['tblusplflag','A']])->first() @endphp
+                        <li class="nav-item">
+                            <span class="nav-link">Plan: {{ $plan->plan->tblplannomb }}</span>
+                        </li>
+                    
+                        <li class="nav-item text-white pt-2">|</li>
+                    @endif
                     <li class="nav-item">
                         <span class="nav-link">Bienvenido: {{ Auth::user()->tblusronomb }}</span>
                     </li>

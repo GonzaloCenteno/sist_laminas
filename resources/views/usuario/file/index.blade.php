@@ -7,8 +7,8 @@
     <div class="row">
         <div class="col-7">
             <div class="md-form md-outline form-sm">
-                <input type="text" id="tblctgadesc" name="tblctgadesc" autocomplete="off" class="form-control" autofocus>
-                <label for="tblctgadesc">BUSCAR LAMINA.-</label>
+                <input type="text" id="bsq_lamina" name="bsq_lamina" autocomplete="off" class="form-control" autofocus>
+                <label for="bsq_lamina">BUSCAR LAMINA.-</label>
             </div>
         </div>
         <div class="col-5 pt-4">
@@ -52,6 +52,33 @@
             });
         }
     });
+
+    function delay(fn, ms) {
+        let timer = 0
+        return function(...args) {
+            clearTimeout(timer)
+            timer = setTimeout(fn.bind(this, ...args), ms || 0)
+        }
+    }
+
+    $("#bsq_lamina").keyup(delay(function (e) {
+        if ($(this).val().length > 4) 
+        {
+            $.ajax({
+                url: '{{ route('file.show',1) }}',
+                data: {
+                    tipo : 2,
+                    descripcion: $(this).val()
+                },
+                success:function(data)
+                {
+                    $('#dataLamina').html(data);
+                    swal.close();
+                }
+            });
+        }
+    }, 350));  
+    
 </script>
 @stop
 @endsection

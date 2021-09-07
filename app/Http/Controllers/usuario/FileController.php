@@ -30,7 +30,7 @@ class FileController extends Controller
     {
         try{
             throw_unless(Tbluspl::where([['tblusrocdgo',$usuario],['tblusplflag','A']])->first(), new \Exception('flta validar'));
-            return Tbllmna::where('tbllmnatipo','O')->paginate(4);
+            return Tbllmna::where('tbllmnatipo','O')->paginate(2);
         } catch (\Exception $ex) {
             return $ex->getMessage();
         }
@@ -43,12 +43,41 @@ class FileController extends Controller
 
     public function store(Request $request)
     {
-
     }
 
-    public function show(Request $request,$id)
+    public function show(Request $request, $tbllmnauuid)
     {
-       
+        if($request->tipo == 1):
+            $lamina = Tbllmna::where('tbllmnauuid',$tbllmnauuid)->first();
+            $view = \View::make('reportes.lamina_original',compact('lamina'))->render();
+            $pdf = \App::make('dompdf.wrapper');
+            $pdf->setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true])->loadHTML($view)->setPaper('a4','landscape');
+            return $pdf->download($lamina->tbllmnanomb.".pdf");
+        else:
+            $nombre = preg_replace('/\s+/', ' ', strtoupper($request['descripcion']));
+
+            $consulta="";$iniciador=0;
+            $descripcion = explode(" ", $nombre);
+            foreach($descripcion as $desc)
+            {
+                if($iniciador==1)
+                {
+                    $consulta.=" AND ";
+                }
+                if($desc!="")
+                {
+                    $consulta.="concat_ws(' ',UPPER(tbllmnanomb),UPPER(tbllmnadesc),UPPER(tbllmnatags),tbllmnacoda) like '%$desc%'";
+                }
+                if($iniciador==0)
+                {
+                    $iniciador=1;
+                }
+            }
+
+            $laminas = Tbllmna::where('tbllmnatipo','O')->whereRaw($consulta)->paginate(2);        
+            $categorias = Tblctga::get();
+            return view('usuario.file.pagination', compact('laminas','categorias'))->render(); 
+        endif;
     }
 
     public function edit($id)

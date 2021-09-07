@@ -5,7 +5,7 @@ namespace App\Http\Controllers\administrador;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Tblplan;
-// use App\Http\Requests\TblctgaRequest;
+use App\Http\Requests\TblplanRequest;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 
@@ -22,7 +22,7 @@ class PlanController extends Controller
         //
     }
 
-    public function store(Request $request)
+    public function store(TblplanRequest $request)
     {
         if(!$request->ajax()) return redirect('/');
         return Tblplan::create($request->all());
@@ -39,7 +39,7 @@ class PlanController extends Controller
         //
     }
 
-    public function update(Request $request, $are_id)
+    public function update(TblplanRequest $request, $are_id)
     {
         
     }

@@ -18,6 +18,7 @@ class CreateTblplanTable extends Migration
             $table->text('tblplannomb')->unique();
             $table->text('tblplandesc');
             $table->decimal('tblplancost');
+            $table->integer('tblplanprdo');
             $table->timestamps();
             $table->softDeletes();
         });

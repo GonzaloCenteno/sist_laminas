@@ -17,6 +17,7 @@ class Tblplan extends Seeder
             'tblplannomb'  => 'BASICO',
             'tblplandesc'  => 'BASICO DESCRIPCION DE EJEMPLO',
             'tblplancost'  => 12.50,
+            'tblplanprdo'  => 3,
             'created_at'   => Carbon::now(),
             'updated_at'   => Carbon::now()
         ]);
@@ -24,6 +25,7 @@ class Tblplan extends Seeder
             'tblplannomb'  => 'INTERMEDIO',
             'tblplandesc'  => 'INTERMEDIO DESCRIPCION DE EJEMPLO',
             'tblplancost'  => 22.50,
+            'tblplanprdo'  => 6,
             'created_at'   => Carbon::now(),
             'updated_at'   => Carbon::now()
         ]);
@@ -31,6 +33,7 @@ class Tblplan extends Seeder
             'tblplannomb'  => 'EXPERTO',
             'tblplandesc'  => 'EXPERTO DESCRIPCION DE EJEMPLO',
             'tblplancost'  => 59.99,
+            'tblplanprdo'  => 12,
             'created_at'   => Carbon::now(),
             'updated_at'   => Carbon::now()
         ]);

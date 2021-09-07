@@ -8,19 +8,37 @@
             <form id="FormularioCrearPlan" method="POST" action="{{ route('plan.store') }}" class="text-center" novalidate>
                 @csrf
                 <div class="row">
-                    <div class="col-8">
+                    <div class="col-6">
                         <div class="md-form md-outline form-sm">
                             <input type="text" id="tblplannomb" name="tblplannomb" autocomplete="off" class="form-control" autofocus>
                             <label for="tblplannomb">NOMBRE.-</label>
                             <small id="error_tblplannomb" class="form-text text-muted text-left text-red"></small>
                         </div>
                     </div>
-                    <div class="col-4">
+                    <div class="col-3">
                         <div class="md-form md-outline form-sm">
-                            <input type="text" id="tblplancost" name="tblplancost" autocomplete="off" class="form-control">
+                            <input type="number" id="tblplancost" name="tblplancost" autocomplete="off" class="form-control">
                             <label for="tblplancost">COSTO.-</label>
                             <small id="error_tblplancost" class="form-text text-muted text-left text-red"></small>
                         </div>
+                    </div>
+                    <div class="col-3 pt-4">
+                        <select class="browser-default custom-select" id="tblplanprdo" name="tblplanprdo">
+                            <option value="0" selected>..:: SELECCIONAR PERIODO ::..</option>
+                            <option value="1">..:: 1 MES ::..</option>
+                            <option value="2">..:: 2 MESES ::..</option>
+                            <option value="3">..:: 3 MESES ::..</option>
+                            <option value="4">..:: 4 MESES ::..</option>
+                            <option value="5">..:: 5 MESES ::..</option>
+                            <option value="6">..:: 6 MESES ::..</option>
+                            <option value="7">..:: 7 MESES ::..</option>
+                            <option value="8">..:: 8 MESES ::..</option>
+                            <option value="9">..:: 9 MESES ::..</option>
+                            <option value="10">..:: 10 MESES ::..</option>
+                            <option value="11">..:: 11 MESES ::..</option>
+                            <option value="12">..:: 12 MESES ::..</option>
+                        </select>
+                        <small id="error_tblplanprdo" class="form-text text-muted text-left text-red"></small>
                     </div>
                 </div>
                 <div class="row">
@@ -55,7 +73,7 @@
                         <th scope="col">CODIGO PLAN</th>
                         <th scope="col">NOMBRE</th>
                         <th scope="col">COSTO</th>
-                        <th scope="col">FECHA CREACION</th>
+                        <th scope="col">PERIODO</th>
                     </tr>
                 </thead>
                 <tfoot>
@@ -63,7 +81,7 @@
                         <th scope="col"><b>CODIGO PLAN</b></th>
                         <th scope="col"><b>NOMBRE</b></th>
                         <th scope="col"><b>COSTO</b></th>
-                        <th scope="col"><b>FECHA CREACION</b></th>
+                        <th scope="col"><b>PERIODO</b></th>
                     </tr>
                 </tfoot>
             </table>
@@ -89,7 +107,7 @@
             { data: 'tblplancdgo', class:'text-center'},
             { data: 'tblplannomb' },
             { data: 'tblplancost', class:'text-center' },
-            { data: 'created_at', class:'text-center',orderable: false,searchable: false}
+            { data: 'tblplanprdo', class:'text-center',orderable: false,searchable: false}
         ],
         select: true,
         "language": {
@@ -114,7 +132,7 @@
 
     //$("#material").addClass("active");
 
-    $("#tblplannomb, #tblplandesc, #tblplancost").on('focus', function () {
+    $("#tblplannomb, #tblplandesc, #tblplancost, #tblplanprdo").on('focus', function () {
         limpiarErrores($(this).attr('id'));
     });
 
@@ -132,6 +150,7 @@
                 $("#tblplannomb").val('');
                 $("#tblplandesc").val('');
                 $("#tblplancost").val('');
+                $("#tblplanprdo").val(0);
                 $("#registroPlan").removeClass('d-block');
                 $("#registroPlan").addClass('d-none');
                 $('#tblplan').DataTable().ajax.reload();

@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Tbllmna;
+use App\Models\Tblplan;
 
 class Tbluspl extends Model
 {
@@ -13,4 +13,9 @@ class Tbluspl extends Model
     // protected $fillable = [
     //     'tblctgadesc'
     // ];
+
+    public function plan()
+    {
+        return $this->hasOne(Tblplan::class,'tblplancdgo','tblplancdgo');
+    }
 }

@@ -13,6 +13,6 @@ class Tblplan extends Model
     protected $primaryKey='tblplancdgo';
 
     protected $fillable = [
-        'tblplannomb','tblplandesc','tblplancost'
+        'tblplannomb','tblplandesc','tblplancost','tblplanprdo'
     ];
 }
