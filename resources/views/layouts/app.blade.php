@@ -117,12 +117,18 @@
                 </ul>
                 <ul class="navbar-nav ml-auto nav-flex-icons">
                     @if(Auth::user()->tblusrotipo == 'USR')
-                        @php $plan = \App\Models\Tbluspl::with('plan')->where([['tblusrocdgo',Auth::user()->tblusrocdgo],['tblusplflag','A']])->first() @endphp
-                        <li class="nav-item">
-                            <span class="nav-link">Plan: {{ $plan->plan->tblplannomb }}</span>
+                        @php 
+                            $plan = \App\Models\Tbluspl::with('plan')->where([['tblusrocdgo',Auth::user()->tblusrocdgo],['tblusplflag','A']])->first(); 
+                            $fvencimiento = \Carbon\Carbon::parse($plan->tblusplfech)->addMonth($plan->plan->tblplanprdo)->format('d-m-Y');
+                        @endphp
+                        <li class="nav-item text-center">
+                            <span class="nav-link my-0 py-0">Tu Membresia Vence: {{ $fvencimiento }}</span>
+                            <span class="nav-link my-0 py-0">Plan: {{ $plan->plan->tblplannomb }}</span>
                         </li>
-                    
-                        <li class="nav-item text-white pt-2">|</li>
+                        <li class="nav-item text-white ">
+                            <span class="nav-link my-0 py-0">|</span>
+                            <span class="nav-link my-0 py-0">|</span>
+                        </li>
                     @endif
                     <li class="nav-item">
                         <span class="nav-link">Bienvenido: {{ Auth::user()->tblusronomb }}</span>

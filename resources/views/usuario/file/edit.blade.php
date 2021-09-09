@@ -23,174 +23,155 @@
   .img-preview > img {
     max-width: 100%;
   }
-
-  .preview-lg {
-    height: 15rem;
-    width: 20rem;
-  }
-  .preview-md {
-    height: 12rem;
-    width: 12rem;
-  }
 </style>
-<div class="container docs-buttons pt-5">
+
+<form id="redirect-canvas" action="{{ route('file.store') }}" method="POST" class="d-none">
+    @csrf
+    <input type="hidden" name="canvasimg" id="canvasimg">
+</form>
+
+<div class="container-fluid docs-buttons">
   <div class="row">
-      <div class="col-1 offset-1">
-          <button type="button" class="btn btn-outline-primary waves-effect" data-method="setDragMode" data-option="move" title="Move">
-          <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;setDragMode&quot;, &quot;move&quot;)">
-              <span class="fa fa-arrows-alt fa-2x"></span>
+    <div class="col-2">
+      <div class="col-12 text-center">
+        <button type="button" class="btn btn-outline-danger btn-rounded waves-effect btn-block" data-method="getCroppedCanvas">
+          <span class="docs-tooltip" data-toggle="tooltip" data-animation="false">
+            CORTAR
           </span>
-          </button>
+        </button>
       </div>
-      <div class="col-1">  
-          <button type="button" class="btn btn-outline-primary waves-effect" data-method="setDragMode" data-option="crop" title="Crop">
-          <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;setDragMode&quot;, &quot;crop&quot;)">
-              <span class="fa fa-square-o fa-2x"></span>
-          </span>
+      <div class="row text-center">
+        <div class="col px-0 mx-0" style="flex-grow: 0">
+          <button type="button" class="btn btn-outline-primary waves-effect btn-rounded" data-method="setDragMode" data-option="move" title="MOVER">
+            <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="MOVER">
+                <span class="fa fa-arrows-alt fa-2x"></span>
+            </span>
           </button>
+        </div>
+        <div class="col px-0 mx-0" style="flex-grow: 0">
+          <button type="button" class="btn btn-outline-primary waves-effect btn-rounded" data-method="setDragMode" data-option="crop" title="RECORTE">
+            <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="RECORTE">
+                <span class="fa fa-square-o fa-2x"></span>
+            </span>
+          </button>
+        </div>
       </div>
-      <div class="col-1"> 
-          <button type="button" class="btn btn-outline-primary waves-effect" data-method="zoom" data-option="0.1" title="Zoom In">
-          <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;zoom&quot;, 0.1)">
+      <div class="row">
+        <div class="col px-0 mx-0" style="flex-grow: 0">
+          <button type="button" class="btn btn-outline-primary waves-effect btn-rounded" data-method="zoom" data-option="0.1" title="+ ZOOM">
+          <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="+ ZOOM">
               <span class="fa fa-search-plus fa-2x"></span>
           </span>
           </button>
-      </div>
-      <div class="col-1"> 
-          <button type="button" class="btn btn-outline-primary waves-effect" data-method="zoom" data-option="-0.1" title="Zoom Out">
-          <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;zoom&quot;, -0.1)">
+        </div>
+        <div class="col px-0 mx-0" style="flex-grow: 0">
+          <button type="button" class="btn btn-outline-primary waves-effect btn-rounded" data-method="zoom" data-option="-0.1" title="- ZOOM">
+          <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="- ZOOM">
               <span class="fa fa-search-minus fa-2x"></span>
           </span>
           </button>
+        </div>
       </div>
-      <div class="col-1">
-          <button type="button" class="btn btn-outline-primary waves-effect" data-method="move" data-option="-10" data-second-option="0" title="Move Left">
-          <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;move&quot;, -10, 0)">
-              <span class="fa fa-arrow-left fa-2x"></span>
-          </span>
+      <div class="row">
+        <div class="col px-0 mx-0" style="flex-grow: 0">
+          <button type="button" class="btn btn-outline-primary waves-effect btn-rounded" data-method="move" data-option="-10" data-second-option="0" title="MOVER IZQUIERDA">
+            <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="MOVER IZQUIERDA">
+                <span class="fa fa-arrow-left fa-2x"></span>
+            </span>
           </button>
-      </div>
-      <div class="col-1">
-          <button type="button" class="btn btn-outline-primary waves-effect" data-method="move" data-option="10" data-second-option="0" title="Move Right">
-          <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;move&quot;, 10, 0)">
-              <span class="fa fa-arrow-right fa-2x"></span>
-          </span>
+        </div>
+        <div class="col px-0 mx-0" style="flex-grow: 0">
+          <button type="button" class="btn btn-outline-primary waves-effect btn-rounded" data-method="move" data-option="10" data-second-option="0" title="MOVER DERECHA">
+            <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="MOVER DERECHA">
+                <span class="fa fa-arrow-right fa-2x"></span>
+            </span>
           </button>
+        </div>
       </div>
-      <div class="col-1">
-          <button type="button" class="btn btn-outline-primary waves-effect" data-method="move" data-option="0" data-second-option="-10" title="Move Up">
-          <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;move&quot;, 0, -10)">
+      <div class="row">
+        <div class="col px-0 mx-0" style="flex-grow: 0">
+          <button type="button" class="btn btn-outline-primary waves-effect btn-rounded" data-method="move" data-option="0" data-second-option="-10" title="MOVER ARRIBA">
+          <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="MOVER ARRIBA">
               <span class="fa fa-arrow-up fa-2x"></span>
           </span>
           </button>
-      </div>
-      <div class="col-1">
-          <button type="button" class="btn btn-outline-primary waves-effect" data-method="move" data-option="0" data-second-option="10" title="Move Down">
-          <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;move&quot;, 0, 10)">
+        </div>
+        <div class="col px-0 mx-0" style="flex-grow: 0">
+          <button type="button" class="btn btn-outline-primary waves-effect btn-rounded" data-method="move" data-option="0" data-second-option="10" title="MOVER ABAJO">
+          <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="MOVER ABAJO">
               <span class="fa fa-arrow-down fa-2x"></span>
           </span>
           </button>
-      </div> 
-      <div class="col-1">
-        <button type="button" class="btn btn-outline-primary waves-effect" data-method="reset" title="REINICIAR">
-        <span class="docs-tooltip" data-toggle="tooltip" data-animation="false">
-            <span class="fa fa-eraser fa-2x"></span>
-        </span>
-        </button>
+        </div>
       </div>
-  </div>
-  <div class="row">
-      <div class="col-1 offset-2">
-      <button type="button" class="btn btn-outline-primary waves-effect" data-method="rotate" data-option="-45" title="Rotate Left">
-          <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;rotate&quot;, -45)">
-          <span class="fa fa-undo fa-2x"></span>
-          </span>
-      </button>
-      </div>
-      <div class="col-1">
-      <button type="button" class="btn btn-outline-primary waves-effect" data-method="rotate" data-option="45" title="Rotate Right">
-          <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;rotate&quot;, 45)">
-          <span class="fa fa-repeat fa-2x"></span>
-          </span>
-      </button>
-      </div>
-      <div class="col-1">
-      <button type="button" class="btn btn-outline-primary waves-effect" data-method="scaleX" data-option="-1" title="Flip Horizontal">
-          <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;scaleX&quot;, -1)">
-          <span class="fa fa-arrows-h fa-2x"></span>
-          </span>
-      </button>
-      </div>
-      <div class="col-1">
-        <button type="button" class="btn btn-outline-primary waves-effect" data-method="scaleY" data-option="-1" title="Flip Vertical">
-            <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;scaleY&quot;, -1)">
-            <span class="fa fa-arrows-v fa-2x"></span>
-            </span>
-        </button>
-      </div>
-      <div class="col-1">
-        <button type="button" class="btn btn-outline-primary waves-effect" data-method="crop" title="Crop">
-            <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;crop&quot;)">
-            <span class="fa fa-check fa-2x"></span>
-            </span>
-        </button>
-      </div>
-      <div class="col-1">
-        <button type="button" class="btn btn-outline-primary waves-effect" data-method="clear" title="Clear">
-            <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;clear&quot;)">
-            <span class="fa fa-times fa-2x"></span>
-            </span>
-        </button>
-      </div>
-      <div class="col-1">
-        <label class="btn btn-outline-primary waves-effect btn-upload" for="inputImage" title="SUBIR IMAGEN">
-            <input type="file" class="sr-only" id="inputImage" name="file" accept=".jpg,.jpeg,.png,.gif,.bmp,.tiff">
+      <div class="row">
+        <div class="col px-0 mx-0" style="flex-grow: 0">
+          <button type="button" class="btn btn-outline-primary waves-effect btn-rounded" data-method="reset" title="REINICIAR">
             <span class="docs-tooltip" data-toggle="tooltip" data-animation="false">
-            <span class="fa fa-upload fa-2x"></span>
+              <span class="fa fa-eraser fa-2x"></span>
             </span>
-        </label>
-      </div> 
-      <!-- <div class="col-1">
-      <button type="button" class="btn btn-outline-primary waves-effect" data-method="disable" title="Disable">
-          <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;disable&quot;)">
-          <span class="fa fa-lock fa-2x"></span>
-          </span>
-      </button>
-      </div>
-      <div class="col-1">
-      <button type="button" class="btn btn-outline-primary waves-effect" data-method="enable" title="Enable">
-          <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;enable&quot;)">
-          <span class="fa fa-unlock fa-2x"></span>
-          </span>
-      </button>
-      </div> -->
-  </div> 
-  <div class="row py-3">
-      <div class="col-4 offset-3">
-        <button type="button" class="btn btn-outline-danger btn-rounded waves-effect btn-block" data-method="getCroppedCanvas" data-option="{ &quot;maxWidth&quot;: 4096, &quot;maxHeight&quot;: 4096 }">
-            <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;getCroppedCanvas&quot;, { maxWidth: 4096, maxHeight: 4096 })">
-            DESCARGAR IMAGEN
+          </button>
+        </div>
+        <div class="col px-0 mx-0" style="flex-grow: 0">
+          <button type="button" class="btn btn-outline-primary waves-effect btn-rounded" data-method="rotate" data-option="-45" title="ROTAR IZQUIEDA 45 GRADOS">
+            <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="ROTAR IZQUIEDA 45 GRADOS">
+              <span class="fa fa-undo fa-2x"></span>
             </span>
-        </button>
+          </button>
+        </div>
       </div>
-      <!-- <div class="col-4">
-      <button type="button" class="btn btn-outline-success waves-effect btn-block" data-method="getCroppedCanvas" data-option="{ &quot;width&quot;: 160, &quot;height&quot;: 90 }">
-          <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;getCroppedCanvas&quot;, { width: 160, height: 90 })">
-          RECORTE TAMAÑO 160&times;90
-          </span>
-      </button>
+      <div class="row">
+        <div class="col px-0 mx-0" style="flex-grow: 0">
+          <button type="button" class="btn btn-outline-primary waves-effect btn-rounded" data-method="rotate" data-option="45" title="ROTAR DERECHA 46 GRADOS">
+            <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="ROTAR DERECHA 46 GRADOS">
+              <span class="fa fa-repeat fa-2x"></span>
+            </span>
+          </button>
+        </div>
+        <div class="col px-0 mx-0" style="flex-grow: 0">
+          <button type="button" class="btn btn-outline-primary waves-effect btn-rounded" data-method="scaleX" data-option="-1" title="VOLTEAR HORIZONTAL">
+            <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="VOLTEAR HORIZONTAL">
+              <span class="fa fa-arrows-h fa-2x"></span>
+            </span>
+          </button>
+        </div>
       </div>
-      <div class="col-4">
-      <button type="button" class="btn btn-outline-success waves-effect btn-block" data-method="getCroppedCanvas" data-option="{ &quot;width&quot;: 320, &quot;height&quot;: 180 }">
-          <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="$().cropper(&quot;getCroppedCanvas&quot;, { width: 320, height: 180 })">
-          RECORTE TAMAÑO 320&times;180
-          </span>
-      </button>
-      </div> -->
-  </div>
-  <div class="row">
-    <div class="col-12">
-        <img id="image" src="{{ asset($lamina->tbllmnaimgn) }}" class="img-fluid" alt="Picture">
+      <div class="row">
+        <div class="col px-0 mx-0" style="flex-grow: 0">
+          <button type="button" class="btn btn-outline-primary waves-effect btn-rounded" data-method="scaleY" data-option="-1" title="VOLTEAR VERTICAL">
+            <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="VOLTEAR VERTICAL">
+              <span class="fa fa-arrows-v fa-2x"></span>
+            </span>
+          </button>
+        </div>
+        <div class="col px-0 mx-0" style="flex-grow: 0">
+          <button type="button" class="btn btn-outline-primary waves-effect btn-rounded" data-method="crop" title="INICIAR RECORTE">
+            <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="INICIAR RECORTE">
+              <span class="fa fa-check fa-2x"></span>
+            </span>
+          </button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col px-0 mx-0" style="flex-grow: 0">
+          <button type="button" class="btn btn-outline-primary waves-effect btn-rounded" data-method="clear" title="LIMPIAR RECUADRO">
+            <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="LIMPIAR RECUADRO">
+              <span class="fa fa-times fa-2x"></span>
+            </span>
+          </button>
+        </div>
+        <div class="col px-0 mx-0" style="flex-grow: 0">
+          <label class="btn btn-outline-primary waves-effect btn-upload btn-rounded" for="inputImage" title="SUBIR IMAGEN">
+              <input type="file" class="sr-only" id="inputImage" name="file" accept=".jpg,.jpeg,.png,.gif,.bmp,.tiff">
+              <span class="docs-tooltip" data-toggle="tooltip" data-animation="false">
+              <span class="fa fa-upload fa-2x"></span>
+              </span>
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="col-10 px-0">
+      <img id="image" src="{{ asset($lamina->tbllmnaimgn) }}" class="img-fluid" alt="Picture">
     </div>
   </div>
 </div>
@@ -364,13 +345,25 @@ $(function () {
 
         case 'getCroppedCanvas':
           if (result) {
-            // Bootstrap's Modal
-            $('#getCroppedCanvasModal').modal().find('.modal-body').html(result);
-
-            if (!$download.hasClass('disabled')) {
-              download.download = uploadedImageName;
-              $download.attr('href', result.toDataURL(uploadedImageType));
-            }
+              // var formData = new FormData();
+              // formData.append('img', result.toDataURL(uploadedImageType));
+              // $.ajax({
+              //     url: '{{ route('file.store') }}',
+              //     type: 'POST',
+              //     dataType: 'json',
+              //     data: formData,
+              //     processData: false,
+              //     contentType: false,
+              //     success: function (data) 
+              //     {
+              //         var ruta = "{{URL::to(':id')}}";
+              //         ruta = ruta.replace(':id', url);
+              //         window.location.href = ruta;
+              //         window.location.href = data;
+              //     }
+              // });
+              $("#canvasimg").val(result.toDataURL(uploadedImageType));
+              setTimeout(function(){ document.getElementById('redirect-canvas').submit(); }, 500);
           }
 
           break;

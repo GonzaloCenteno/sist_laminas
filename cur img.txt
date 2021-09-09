@@ -1,0 +1,14 @@
+https://www.jqueryscript.net/tags.php?/Image%20Cropping/
+https://ourcodeworld.com/articles/read/281/top-7-best-image-cropping-javascript-and-jquery-plugins
+https://freefrontend.com/jquery-image-cropping-plugins/
+
+
+https://stackoverflow.com/questions/16223786/store-and-retrieve-javascript-arrays-into-and-from-html5-data-attributes
+https://hotexamples.com/es/examples/yajra.datatables.html/Builder/addColumn/php-builder-addcolumn-method-examples.html
+
+
+-----------------------
+
+
+https://stackoverflow.com/questions/53213135/jquery-ui-issue-with-resizable-image-within-a-div
+https://stackoverflow.com/questions/50216507/jquery-resizable-1px-mismatch-error

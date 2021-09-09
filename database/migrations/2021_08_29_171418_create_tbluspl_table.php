@@ -17,6 +17,7 @@ class CreateTblusplTable extends Migration
             $table->bigInteger('tblplancdgo')->unsigned()->required();
             $table->bigInteger('tblusrocdgo')->unsigned()->required();
             $table->char('tblusplflag', 1)->default('A');
+            $table->date('tblusplfech');
 
             $table->foreign('tblplancdgo')->references('tblplancdgo')->on('tblplan');
             $table->foreign('tblusrocdgo')->references('tblusrocdgo')->on('tblusro');

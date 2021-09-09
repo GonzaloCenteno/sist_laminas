@@ -43,6 +43,9 @@ class FileController extends Controller
 
     public function store(Request $request)
     {
+        $img = $request->canvasimg;
+        //return redirect()->route('lamina.index');
+        return view('usuario.file.canvas', compact('img'))->render(); 
     }
 
     public function show(Request $request, $tbllmnauuid)
@@ -53,6 +56,9 @@ class FileController extends Controller
             $pdf = \App::make('dompdf.wrapper');
             $pdf->setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true])->loadHTML($view)->setPaper('a4','landscape');
             return $pdf->download($lamina->tbllmnanomb.".pdf");
+        elseif($request->tipo == 3):
+            $lamina = Tbllmna::where('tbllmnauuid',$tbllmnauuid)->first();
+            return view('usuario.file.view', compact('lamina'));
         else:
             $nombre = preg_replace('/\s+/', ' ', strtoupper($request['descripcion']));
 
