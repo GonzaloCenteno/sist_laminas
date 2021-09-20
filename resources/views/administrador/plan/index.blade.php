@@ -8,6 +8,9 @@
             <form id="FormularioCrearPlan" method="POST" action="{{ route('plan.store') }}" class="text-center" novalidate>
                 @csrf
                 <div class="row">
+                    <div class="col" id="idplan"></div>
+                </div>
+                <div class="row">
                     <div class="col-6">
                         <div class="md-form md-outline form-sm">
                             <input type="text" id="tblplannomb" name="tblplannomb" autocomplete="off" class="form-control" autofocus>
@@ -74,6 +77,7 @@
                         <th scope="col">NOMBRE</th>
                         <th scope="col">COSTO</th>
                         <th scope="col">PERIODO</th>
+                        <th scope="col">EDITAR</th>
                     </tr>
                 </thead>
                 <tfoot>
@@ -82,6 +86,7 @@
                         <th scope="col"><b>NOMBRE</b></th>
                         <th scope="col"><b>COSTO</b></th>
                         <th scope="col"><b>PERIODO</b></th>
+                        <th scope="col"><b>EDITAR</b></th>
                     </tr>
                 </tfoot>
             </table>
@@ -107,7 +112,8 @@
             { data: 'tblplancdgo', class:'text-center'},
             { data: 'tblplannomb' },
             { data: 'tblplancost', class:'text-center' },
-            { data: 'tblplanprdo', class:'text-center',orderable: false,searchable: false}
+            { data: 'tblplanprdo', class:'text-center',orderable: false,searchable: false},
+            { data: 'action', class:'text-center',orderable: false,searchable: false}
         ],
         select: true,
         "language": {
@@ -128,6 +134,11 @@
     $("#mostrarPlan").click(function(){
         $("#registroPlan").removeClass('d-none');
         $("#registroPlan").addClass('d-block');
+        $("#idplan").children("input").remove();
+        $("#tblplannomb").val('').trigger("change");
+        $("#tblplancost").val('').trigger("change");
+        $("#tblplandesc").val('').trigger("change");
+        $("#tblplanprdo").val('0');
     });
 
     //$("#material").addClass("active");
@@ -158,6 +169,19 @@
             }
         });
     });
+
+    function traer_plan(obj)
+    {
+        $("#registroPlan").removeClass('d-none');
+        $("#registroPlan").addClass('d-block');
+        $("#idplan").html('<input type="hidden" id="tblplancdgo" name="tblplancdgo">');
+        $("#tblplannomb").val(obj.tblplannomb).trigger("change");
+        $("#tblplancost").val(obj.tblplancost).trigger("change");
+        $("#tblplandesc").val(obj.tblplandesc).trigger("change");
+        $("#tblplanprdo").val(obj.tblplanprdo).trigger("change");
+        $("#tblplancdgo").val(obj.tblplancdgo);
+        $("#tblplannomb").focus();
+    }
 </script>
 @stop
 @endsection

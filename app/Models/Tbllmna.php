@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\Tblctga;
 use Illuminate\Support\Str;
+use Carbon\Carbon;
 
 class Tbllmna extends Model
 {
@@ -15,7 +16,7 @@ class Tbllmna extends Model
     protected $primaryKey='tbllmnacdgo';
 
     protected $fillable = [
-        'tbllmnacoda','tbllmnanomb','tbllmnadesc','tbllmnauuid','tbllmnaimgn','tbllmnafech','tbllmnatipo','tblctgacdgo','tbllmnafvrt','tbllmnatags'
+        'tbllmnacoda','tbllmnanomb','tbllmnadesc','tbllmnauuid','tbllmnaimgn','tbllmnafech','tbllmnatipo','tblctgacdgo','tbllmnatags'
     ];
 
     public function categoria()
@@ -35,8 +36,13 @@ class Tbllmna extends Model
     public function getTbllmnatipoAttribute($value)
     {
         switch ($value) {
-          case "F": return 'FREE';break;
-          case "O": return 'ORIGINAL';break;
+          case 1: return 'FREE';break;
+          case 0: return 'ORIGINAL';break;
         }
+    }
+
+    public function getTbllmnafechAttribute($value)
+    {
+        return Carbon::parse($value)->format('d/m/Y'); 
     }
 }

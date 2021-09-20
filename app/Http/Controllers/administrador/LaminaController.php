@@ -28,9 +28,41 @@ class LaminaController extends Controller
     public function store(TbllmnaRequest $request)
     {
         if(!$request->ajax()) return redirect('/');
-        $request['tbllmnauuid'] = Str::random(12);
-        $request['tbllmnafech'] = date('Y-m-d');
-        return Tbllmna::create($request->all());
+        try{
+            if($request->hasFile('tbllmnaimgn'))
+            { 
+                foreach($request->tbllmnaimgn as $file)
+                {
+                    // dd($request->file);
+                    // $file->getClientOriginalName();
+                    // $bandera = Str::random(12);
+                    // $filename = $file->getClientOriginalName();
+                    // $fileserver = $bandera.'_'.$filename;
+                    // $file->move(public_path('adjuntos/'), htmlentities($fileserver));
+                    $request['tbllmnauuid'] = Str::random(12);
+                    $request['tbllmnafech'] = date('Y-m-d');
+                    $request['tbllmnaimgn'] = 'ssss';
+                    return Tbllmna::create($request->all());
+                    // Tbllmna::create([
+                    //     ['tbllmnacoda'] => 123,
+                    //     ['tbllmnanomb'] => $request->tbllmnanomb,
+                    //     ['tbllmnadesc'] => $request->tbllmnadesc,
+                    //     ['tbllmnauuid'] => Str::random(12),
+                    //     ['tbllmnaimgn'] => 'adjuntos/',
+                    //     ['tbllmnafech'] => date('Y-m-d'),
+                    //     //['tbllmnatipo'] => $key
+                    //     ['tblctgacdgo'] => $request->tblctgacdgo,
+                    //     ['tbllmnatags'] => $request->tbllmnatags
+                    // ]);
+                }
+                // return 1;
+            } 
+        }catch(\Exception $exception){
+            return response()->json(['error' => $exception->getMessage()], 412); 
+        }  
+        // $request['tbllmnauuid'] = Str::random(12);
+        // $request['tbllmnafech'] = date('Y-m-d');
+        // return Tbllmna::create($request->all());
     }
 
     public function show(Request $request,$id)

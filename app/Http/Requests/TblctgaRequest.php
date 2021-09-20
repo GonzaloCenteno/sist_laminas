@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class TblctgaRequest extends FormRequest
 {
@@ -24,7 +25,7 @@ class TblctgaRequest extends FormRequest
     public function rules()
     {
         return [
-            'tblctgadesc' => 'required|unique:tblctga'
+            'tblctgadesc' => ['required', Rule::unique('tblctga','tblctgadesc')->ignore($this->categorium,'tblctgacdgo')],
         ];
     }
 

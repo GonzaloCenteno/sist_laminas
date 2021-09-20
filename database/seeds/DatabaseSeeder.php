@@ -15,5 +15,6 @@ class DatabaseSeeder extends Seeder
         $this->call(Tblusro::class);
         $this->call(Tblplan::class);
         $this->call(Tbluspl::class);
+        $this->call(Tbllmna::class);
     }
 }

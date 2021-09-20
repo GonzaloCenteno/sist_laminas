@@ -24,7 +24,7 @@
                     </div>
                     <div class="col-4">
                         <div class="md-form md-outline form-sm">
-                            <input type="file" id="tbllmnaimgn" name="tbllmnaimgn" autocomplete="off" class="form-control">
+                            <input type="file" id="tbllmnaimgn" name="tbllmnaimgn" autocomplete="off" class="form-control" multiple accept="image/png,image/gif,image/jpeg">
                             <small id="error_tbllmnaimgn" class="form-text text-muted text-left text-red"></small>
                         </div>
                     </div>
@@ -48,7 +48,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-6">
+                    <div class="col-12">
                         <select class="browser-default custom-select" id="tblctgacdgo" name="tblctgacdgo">
                             <option value="0" selected>..:: SELECCIONAR CATEGORIA ::..</option>
                             @foreach($categorias as $categoria)
@@ -57,14 +57,14 @@
                         </select>
                         <small id="error_tblctgacdgo" class="form-text text-muted text-left text-red"></small>
                     </div>
-                    <div class="col-6">
+                    <!-- <div class="col-6">
                         <select class="browser-default custom-select" id="tbllmnatipo" name="tbllmnatipo">
                             <option value="0" selected>..:: SELECCIONAR TIPO ::..</option>
                             <option value="F">FREE</option>
                             <option value="O">ORIGINAL</option>
                         </select>
                         <small id="error_tbllmnatipo" class="form-text text-muted text-left text-red"></small>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="row pt-4">
                     <div class="col-6 offset-2">

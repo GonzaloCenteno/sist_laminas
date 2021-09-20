@@ -25,12 +25,15 @@ class CategoriaController extends Controller
     public function store(TblctgaRequest $request)
     {
         if(!$request->ajax()) return redirect('/');
-        return Tblctga::create($request->all());
+        unset($request['_token']);
+        return Tblctga::updateOrCreate( ['tblctgacdgo' => $request->tblctgacdgo], $request->all());
     }
 
     public function show(Request $request,$id)
     {
-        return datatables()->of(Tblctga::get())->make(true);
+        return datatables()->of(Tblctga::get())->addColumn('action', function ($c) {
+            return "<button onClick='traer_categoria(".$c.")' class='btn btn-outline-warning btn-sm btn-rounded py-1 my-0 btnExtraer'><i class='fa fa-edit fa-2x'></i></button>";
+        })->make(true);
     }
 
     public function edit($id)

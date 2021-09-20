@@ -15,4 +15,14 @@ class Tblplan extends Model
     protected $fillable = [
         'tblplannomb','tblplandesc','tblplancost','tblplanprdo'
     ];
+
+    public function getTblplannombAttribute($value)
+    {
+        return strtoupper($value);
+    }
+
+    public function getTblplandescAttribute($value)
+    {
+        return strtoupper($value);
+    }
 }

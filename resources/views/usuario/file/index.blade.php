@@ -2,6 +2,12 @@
 @section('title', ' - Mis Laminas') 
 @section('content')
 
+<style>
+    .imglam {
+        max-height: 250px;
+    }
+</style>
+
 <div class="container-fluid">
     @if($laminas->count() != 0)
     <div class="row">
@@ -12,7 +18,7 @@
             </div>
         </div>
         <div class="col-5 pt-4">
-            <select class="browser-default custom-select" id="tblctgacdgo" name="tblctgacdgo">
+            <select class="browser-default custom-select" id="tblctgacdgo" name="tblctgacdgo" onchange="buscar_laminas(this)">
                 <option value="0" selected>..:: SELECCIONAR CATEGORIA ::..</option>
                 @foreach($categorias as $categoria)
                     <option value="{{ $categoria->tblctgacdgo }}">{{ $categoria->tblctgadesc }}</option>
@@ -36,22 +42,22 @@
             
             cambiar_pagina(page);
         });
-
-        function cambiar_pagina(page)
-        {
-            $.ajax({
-                url: '{{ route('file.index') }}',
-                data: {
-                    page : page
-                },
-                success:function(data)
-                {
-                    $('#dataLamina').html(data);
-                    swal.close();
-                }
-            });
-        }
     });
+
+    function cambiar_pagina(page)
+    {
+        $.ajax({
+            url: '{{ route('file.index') }}',
+            data: {
+                page : page
+            },
+            success:function(data)
+            {
+                $('#dataLamina').html(data);
+                swal.close();
+            }
+        });
+    }
 
     function delay(fn, ms) {
         let timer = 0
@@ -77,7 +83,31 @@
                 }
             });
         }
+        if($(this).val().length == 0)
+        {
+            cambiar_pagina(1);
+        }
     }, 350));  
+
+    function buscar_laminas(el)
+    {
+        if(el.value == 0) {
+            cambiar_pagina(1);
+        } else {
+            $.ajax({
+                url: '{{ route('file.show',1) }}',
+                data: {
+                    tipo : 4,
+                    valor: el.value
+                },
+                success:function(data)
+                {
+                    $('#dataLamina').html(data);
+                    swal.close();
+                }
+            });
+        }
+    }
     
 </script>
 @stop

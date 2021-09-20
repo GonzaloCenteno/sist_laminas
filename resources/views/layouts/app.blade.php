@@ -23,9 +23,6 @@
 		.btn-rounded {
 			border-radius: 25px;
 		}
-		body {
-			background-color: rgba(245,245,220,0.6) !important;
-		}
 		input:disabled,
 		input[disabled]{
 			border: 1px solid #999999 !important;
@@ -53,6 +50,10 @@
         }
         .table tr {
             cursor: pointer;
+        }
+        body table.dataTable tbody tr.selected td{
+            background-color: #1c4c9c !important;
+            color: #fff !important;
         }
         body table.dataTable tbody>tr:hover td {
             background-color: #1c4c9c !important;
@@ -101,7 +102,7 @@
                             <a href="{{ route('usuario.index') }}" class="nav-link" href="#">Usuarios</a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('usuario.index') }}" class="nav-link" href="#">Facturas</a>
+                            <a href="{{ route('factura.index') }}" class="nav-link" href="#">Facturas</a>
                         </li>
                         <li class="nav-item">
                             <a href="{{ route('file.index') }}" class="nav-link" href="#">Mis Laminas</a>
@@ -172,6 +173,7 @@
                     alertas(1);
                 },
                 error: function (x, status, error) {
+                    console.log(x, status, error);
                     if (x.status == 422) {
                         alertas(3);
                         var data = x.responseJSON.errors;

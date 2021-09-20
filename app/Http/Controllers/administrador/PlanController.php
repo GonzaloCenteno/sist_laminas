@@ -25,13 +25,16 @@ class PlanController extends Controller
     public function store(TblplanRequest $request)
     {
         if(!$request->ajax()) return redirect('/');
-        return Tblplan::create($request->all());
+        unset($request['_token']);
+        return Tblplan::updateOrCreate( ['tblplancdgo' => $request->tblplancdgo], $request->all());
     }
 
     public function show(Request $request,$id)
     {
         if(!$request->ajax()) return redirect('/');
-        return datatables()->of(Tblplan::get())->make(true);
+        return datatables()->of(Tblplan::get())->addColumn('action', function ($c) {
+            return "<button onClick='traer_plan(".$c.")' class='btn btn-outline-warning btn-sm btn-rounded py-1 my-0 btnExtraer'><i class='fa fa-edit fa-2x'></i></button>";
+        })->make(true);
     }
 
     public function edit($id)

@@ -7,6 +7,9 @@
         <div id="registroCategoria" class="col d-none">
             <form id="FormularioCrearCategoria" method="POST" action="{{ route('categoria.store') }}" class="text-center" novalidate>
                 @csrf
+                <div class="row">
+                    <div class="col" id="idcategoria"></div>
+                </div>
                 <div class="md-form md-outline form-sm">
                     <input type="text" id="tblctgadesc" name="tblctgadesc" autocomplete="off" class="form-control" autofocus>
                     <label for="tblctgadesc">DESCRIPCION CATEGORIA.-</label>
@@ -35,6 +38,7 @@
                         <th scope="col">CODIGO CATEGORIA</th>
                         <th scope="col">DESCRIPCION</th>
                         <th scope="col">FECHA CREACION</th>
+                        <th scope="col">EDITAR</th>
                     </tr>
                 </thead>
                 <tfoot>
@@ -42,6 +46,7 @@
                         <th scope="col"><b>CODIGO CATEGORIA</b></th>
                         <th scope="col"><b>DESCRIPCION</b></th>
                         <th scope="col"><b>FECHA CREACION</b></th>
+                        <th scope="col"><b>EDITAR</b></th>
                     </tr>
                 </tfoot>
             </table>
@@ -66,7 +71,8 @@
         columns: [
             { data: 'tblctgacdgo', class:'text-center'},
             { data: 'tblctgadesc' },
-            { data: 'created_at', class:'text-center',orderable: false,searchable: false}
+            { data: 'created_at', class:'text-center',orderable: false,searchable: false},
+            { data: 'action', class:'text-center',orderable: false,searchable: false},
         ],
         select: true,
         "language": {
@@ -87,6 +93,8 @@
     $("#mostrarCategoria").click(function(){
         $("#registroCategoria").removeClass('d-none');
         $("#registroCategoria").addClass('d-block');
+        $("#idcategoria").children("input").remove();
+        $("#tblctgadesc").val('').trigger("change");
     });
 
     //$("#material").addClass("active");
@@ -114,6 +122,16 @@
             }
         });
     });
+
+    function traer_categoria(obj)
+    {
+        $("#registroCategoria").removeClass('d-none');
+        $("#registroCategoria").addClass('d-block');
+        $("#idcategoria").html('<input type="hidden" id="tblctgacdgo" name="tblctgacdgo">');
+        $("#tblctgadesc").val(obj.tblctgadesc).trigger("change");
+        $("#tblctgacdgo").val(obj.tblctgacdgo);
+        $("#tblctgadesc").focus();
+    }
 </script>
 @stop
 @endsection

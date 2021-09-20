@@ -23,6 +23,15 @@
   .img-preview > img {
     max-width: 100%;
   }
+
+  .barElements {
+    background: #1c1c1c;
+    border-radius: 35px;
+  }
+
+  .rellenoBtn {
+    background: #343434;
+  }
 </style>
 
 <form id="redirect-canvas" action="{{ route('file.store') }}" method="POST" class="d-none">
@@ -32,139 +41,139 @@
 
 <div class="container-fluid docs-buttons">
   <div class="row">
-    <div class="col-2">
+    <div class="col-2 barElements py-5">
       <div class="col-12 text-center">
-        <button type="button" class="btn btn-outline-danger btn-rounded waves-effect btn-block" data-method="getCroppedCanvas">
-          <span class="docs-tooltip" data-toggle="tooltip" data-animation="false">
-            CORTAR
+        <button type="button" class="btn btn-outline-danger btn-rounded waves-effect btn-block py-3" data-method="getCroppedCanvas">
+          <span class="h2 docs-tooltip text-white" data-toggle="tooltip" data-animation="false">
+            CORTAR <i class="fa fa-scissors fa-2x pl-3" aria-hidden="true"></i>
           </span>
         </button>
       </div>
-      <div class="row text-center">
+      <div class="row justify-content-md-center pt-4">
         <div class="col px-0 mx-0" style="flex-grow: 0">
-          <button type="button" class="btn btn-outline-primary waves-effect btn-rounded" data-method="setDragMode" data-option="move" title="MOVER">
+          <button type="button" class="btn waves-effect btn-rounded px-5 rellenoBtn" data-method="setDragMode" data-option="move" title="MOVER">
             <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="MOVER">
-                <span class="fa fa-arrows-alt fa-2x"></span>
+                <span class="fa fa-arrows-alt fa-2x text-white"></span>
             </span>
           </button>
         </div>
         <div class="col px-0 mx-0" style="flex-grow: 0">
-          <button type="button" class="btn btn-outline-primary waves-effect btn-rounded" data-method="setDragMode" data-option="crop" title="RECORTE">
+          <button type="button" class="btn waves-effect btn-rounded px-5 rellenoBtn" data-method="setDragMode" data-option="crop" title="RECORTE">
             <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="RECORTE">
-                <span class="fa fa-square-o fa-2x"></span>
+                <span class="fa fa-square-o fa-2x text-white"></span>
             </span>
           </button>
         </div>
       </div>
-      <div class="row">
+      <div class="row justify-content-md-center">
         <div class="col px-0 mx-0" style="flex-grow: 0">
-          <button type="button" class="btn btn-outline-primary waves-effect btn-rounded" data-method="zoom" data-option="0.1" title="+ ZOOM">
+          <button type="button" class="btn waves-effect btn-rounded px-5 rellenoBtn" data-method="zoom" data-option="0.1" title="+ ZOOM">
           <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="+ ZOOM">
-              <span class="fa fa-search-plus fa-2x"></span>
+              <span class="fa fa-search-plus fa-2x text-white"></span>
           </span>
           </button>
         </div>
         <div class="col px-0 mx-0" style="flex-grow: 0">
-          <button type="button" class="btn btn-outline-primary waves-effect btn-rounded" data-method="zoom" data-option="-0.1" title="- ZOOM">
+          <button type="button" class="btn waves-effect btn-rounded px-5 rellenoBtn" data-method="zoom" data-option="-0.1" title="- ZOOM">
           <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="- ZOOM">
-              <span class="fa fa-search-minus fa-2x"></span>
+              <span class="fa fa-search-minus fa-2x text-white"></span>
           </span>
           </button>
         </div>
       </div>
-      <div class="row">
+      <div class="row justify-content-md-center">
         <div class="col px-0 mx-0" style="flex-grow: 0">
-          <button type="button" class="btn btn-outline-primary waves-effect btn-rounded" data-method="move" data-option="-10" data-second-option="0" title="MOVER IZQUIERDA">
+          <button type="button" class="btn waves-effect btn-rounded px-5 rellenoBtn" data-method="move" data-option="-10" data-second-option="0" title="MOVER IZQUIERDA">
             <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="MOVER IZQUIERDA">
-                <span class="fa fa-arrow-left fa-2x"></span>
+                <span class="fa fa-arrow-left fa-2x text-white"></span>
             </span>
           </button>
         </div>
         <div class="col px-0 mx-0" style="flex-grow: 0">
-          <button type="button" class="btn btn-outline-primary waves-effect btn-rounded" data-method="move" data-option="10" data-second-option="0" title="MOVER DERECHA">
+          <button type="button" class="btn waves-effect btn-rounded px-5 rellenoBtn" data-method="move" data-option="10" data-second-option="0" title="MOVER DERECHA">
             <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="MOVER DERECHA">
-                <span class="fa fa-arrow-right fa-2x"></span>
+                <span class="fa fa-arrow-right fa-2x text-white"></span>
             </span>
           </button>
         </div>
       </div>
-      <div class="row">
+      <div class="row justify-content-md-center">
         <div class="col px-0 mx-0" style="flex-grow: 0">
-          <button type="button" class="btn btn-outline-primary waves-effect btn-rounded" data-method="move" data-option="0" data-second-option="-10" title="MOVER ARRIBA">
+          <button type="button" class="btn waves-effect btn-rounded px-5 rellenoBtn" data-method="move" data-option="0" data-second-option="-10" title="MOVER ARRIBA">
           <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="MOVER ARRIBA">
-              <span class="fa fa-arrow-up fa-2x"></span>
+              <span class="fa fa-arrow-up fa-2x text-white"></span>
           </span>
           </button>
         </div>
         <div class="col px-0 mx-0" style="flex-grow: 0">
-          <button type="button" class="btn btn-outline-primary waves-effect btn-rounded" data-method="move" data-option="0" data-second-option="10" title="MOVER ABAJO">
+          <button type="button" class="btn waves-effect btn-rounded px-5 rellenoBtn" data-method="move" data-option="0" data-second-option="10" title="MOVER ABAJO">
           <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="MOVER ABAJO">
-              <span class="fa fa-arrow-down fa-2x"></span>
+              <span class="fa fa-arrow-down fa-2x text-white"></span>
           </span>
           </button>
         </div>
       </div>
-      <div class="row">
+      <div class="row justify-content-md-center">
         <div class="col px-0 mx-0" style="flex-grow: 0">
-          <button type="button" class="btn btn-outline-primary waves-effect btn-rounded" data-method="reset" title="REINICIAR">
+          <button type="button" class="btn waves-effect btn-rounded px-5 rellenoBtn" data-method="reset" title="REINICIAR">
             <span class="docs-tooltip" data-toggle="tooltip" data-animation="false">
-              <span class="fa fa-eraser fa-2x"></span>
+              <span class="fa fa-eraser fa-2x text-white"></span>
             </span>
           </button>
         </div>
         <div class="col px-0 mx-0" style="flex-grow: 0">
-          <button type="button" class="btn btn-outline-primary waves-effect btn-rounded" data-method="rotate" data-option="-45" title="ROTAR IZQUIEDA 45 GRADOS">
+          <button type="button" class="btn waves-effect btn-rounded px-5 rellenoBtn" data-method="rotate" data-option="-45" title="ROTAR IZQUIEDA 45 GRADOS">
             <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="ROTAR IZQUIEDA 45 GRADOS">
-              <span class="fa fa-undo fa-2x"></span>
+              <span class="fa fa-undo fa-2x text-white"></span>
             </span>
           </button>
         </div>
       </div>
-      <div class="row">
+      <div class="row justify-content-md-center">
         <div class="col px-0 mx-0" style="flex-grow: 0">
-          <button type="button" class="btn btn-outline-primary waves-effect btn-rounded" data-method="rotate" data-option="45" title="ROTAR DERECHA 46 GRADOS">
+          <button type="button" class="btn waves-effect btn-rounded px-5 rellenoBtn" data-method="rotate" data-option="45" title="ROTAR DERECHA 46 GRADOS">
             <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="ROTAR DERECHA 46 GRADOS">
-              <span class="fa fa-repeat fa-2x"></span>
+              <span class="fa fa-repeat fa-2x text-white"></span>
             </span>
           </button>
         </div>
         <div class="col px-0 mx-0" style="flex-grow: 0">
-          <button type="button" class="btn btn-outline-primary waves-effect btn-rounded" data-method="scaleX" data-option="-1" title="VOLTEAR HORIZONTAL">
+          <button type="button" class="btn waves-effect btn-rounded px-5 rellenoBtn" data-method="scaleX" data-option="-1" title="VOLTEAR HORIZONTAL">
             <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="VOLTEAR HORIZONTAL">
-              <span class="fa fa-arrows-h fa-2x"></span>
+              <span class="fa fa-arrows-h fa-2x text-white"></span>
             </span>
           </button>
         </div>
       </div>
-      <div class="row">
+      <div class="row justify-content-md-center">
         <div class="col px-0 mx-0" style="flex-grow: 0">
-          <button type="button" class="btn btn-outline-primary waves-effect btn-rounded" data-method="scaleY" data-option="-1" title="VOLTEAR VERTICAL">
+          <button type="button" class="btn waves-effect btn-rounded px-5 rellenoBtn" data-method="scaleY" data-option="-1" title="VOLTEAR VERTICAL">
             <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="VOLTEAR VERTICAL">
-              <span class="fa fa-arrows-v fa-2x"></span>
+              <span class="fa fa-arrows-v fa-2x text-white"></span>
             </span>
           </button>
         </div>
         <div class="col px-0 mx-0" style="flex-grow: 0">
-          <button type="button" class="btn btn-outline-primary waves-effect btn-rounded" data-method="crop" title="INICIAR RECORTE">
+          <button type="button" class="btn waves-effect btn-rounded px-5 rellenoBtn" data-method="crop" title="INICIAR RECORTE">
             <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="INICIAR RECORTE">
-              <span class="fa fa-check fa-2x"></span>
+              <span class="fa fa-check fa-2x text-white"></span>
             </span>
           </button>
         </div>
       </div>
-      <div class="row">
+      <div class="row justify-content-md-center">
         <div class="col px-0 mx-0" style="flex-grow: 0">
-          <button type="button" class="btn btn-outline-primary waves-effect btn-rounded" data-method="clear" title="LIMPIAR RECUADRO">
+          <button type="button" class="btn waves-effect btn-rounded px-5 rellenoBtn" data-method="clear" title="LIMPIAR RECUADRO">
             <span class="docs-tooltip" data-toggle="tooltip" data-animation="false" title="LIMPIAR RECUADRO">
-              <span class="fa fa-times fa-2x"></span>
+              <span class="fa fa-times fa-2x text-white"></span>
             </span>
           </button>
         </div>
         <div class="col px-0 mx-0" style="flex-grow: 0">
-          <label class="btn btn-outline-primary waves-effect btn-upload btn-rounded" for="inputImage" title="SUBIR IMAGEN">
+          <label class="btn waves-effect btn-upload btn-rounded px-5 rellenoBtn" for="inputImage" title="SUBIR IMAGEN">
               <input type="file" class="sr-only" id="inputImage" name="file" accept=".jpg,.jpeg,.png,.gif,.bmp,.tiff">
               <span class="docs-tooltip" data-toggle="tooltip" data-animation="false">
-              <span class="fa fa-upload fa-2x"></span>
+              <span class="fa fa-upload fa-2x text-white"></span>
               </span>
           </label>
         </div>

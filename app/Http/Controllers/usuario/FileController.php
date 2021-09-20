@@ -17,7 +17,7 @@ class FileController extends Controller
     public function index(Request $request)
     {
         $laminas = $this->obtener_laminas_por_plan(Auth::user()->tblusrocdgo);
-        $categorias = Tblctga::get();
+        $categorias = Tblctga::orderBy('tblctgadesc','asc')->get();
 
         if ($request->ajax()) {
             return view('usuario.file.pagination', compact('laminas','categorias'))->render(); 
@@ -30,7 +30,7 @@ class FileController extends Controller
     {
         try{
             throw_unless(Tbluspl::where([['tblusrocdgo',$usuario],['tblusplflag','A']])->first(), new \Exception('flta validar'));
-            return Tbllmna::where('tbllmnatipo','O')->paginate(2);
+            return Tbllmna::where('tbllmnatipo','0')->paginate(2);
         } catch (\Exception $ex) {
             return $ex->getMessage();
         }
@@ -59,6 +59,10 @@ class FileController extends Controller
         elseif($request->tipo == 3):
             $lamina = Tbllmna::where('tbllmnauuid',$tbllmnauuid)->first();
             return view('usuario.file.view', compact('lamina'));
+        elseif($request->tipo == 4):
+            $laminas = Tbllmna::where('tblctgacdgo',$request->valor)->with('categoria')->paginate(2);
+            $categorias = Tblctga::get();
+            return view('usuario.file.pagination', compact('laminas','categorias'))->render(); 
         else:
             $nombre = preg_replace('/\s+/', ' ', strtoupper($request['descripcion']));
 
@@ -80,8 +84,8 @@ class FileController extends Controller
                 }
             }
 
-            $laminas = Tbllmna::where('tbllmnatipo','O')->whereRaw($consulta)->paginate(2);        
-            $categorias = Tblctga::get();
+            $laminas = Tbllmna::where('tbllmnatipo','0')->whereRaw($consulta)->paginate(2);        
+            $categorias = Tblctga::orderBy('tblctgadesc','asc')->get();
             return view('usuario.file.pagination', compact('laminas','categorias'))->render(); 
         endif;
     }

@@ -24,6 +24,7 @@ Route::group(['namespace' => 'administrador', 'middleware' => ['auth', 'acceso',
     Route::resource('/lamina', 'LaminaController');
     Route::resource('/usuario', 'UsuarioController');
     Route::resource('/plan', 'PlanController');
+    Route::resource('/factura', 'FacturaController');
 });
 
 Route::group(['namespace' => 'usuario', 'middleware' => ['auth', 'acceso', 'web']], function() {

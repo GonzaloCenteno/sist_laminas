@@ -5,15 +5,15 @@ namespace App\Http\Controllers\administrador;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\User;
+use App\Models\Tbluspl;
 use Carbon\Carbon;
 
-class UsuarioController extends Controller
+class FacturaController extends Controller
 {
 
     public function index()
     {
-        return view('administrador.usuario.index');
+        return view('administrador.factura.index');
     }
 
     public function create()
@@ -28,7 +28,10 @@ class UsuarioController extends Controller
 
     public function show(Request $request,$id)
     {
-        return datatables()->of(User::where('tblusrotipo','USR'))->make(true);
+        return datatables()->of(Tbluspl::with('plan','usuario'))
+                            ->addColumn('fechvencimiento', function($datos) {
+                                return Carbon::parse($datos->tblusplfech)->addMonth($datos->plan->tblplanprdo)->format('d/m/Y');
+                            })->rawColumns(['fechvencimiento'])->make(true);
     }
 
     public function edit($id)
