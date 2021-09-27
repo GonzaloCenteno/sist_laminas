@@ -31,5 +31,23 @@ class Tblusro extends Seeder
             'created_at' 	=> Carbon::now(),
             'updated_at' 	=> Carbon::now()
         ]);
+
+        DB::table('tblusro')->insert([
+            'tblusronomb'   => 'JOSE CARLOS AQUINO HUAMANI',
+            'email'         => 'caquino@gmail.com',
+            'password'      => Hash::make('123456789'),
+            'tblusrotipo'   => 'USR',
+            'created_at' 	=> Carbon::now(),
+            'updated_at' 	=> Carbon::now()
+        ]);
+
+        DB::table('tblusro')->insert([
+            'tblusronomb'   => 'CARLOS ALVAREZ GOMEZ',
+            'email'         => 'caquinocalvarez@gmail.com',
+            'password'      => Hash::make('123456789'),
+            'tblusrotipo'   => 'USR',
+            'created_at' 	=> Carbon::now(),
+            'updated_at' 	=> Carbon::now()
+        ]);
     }
 }

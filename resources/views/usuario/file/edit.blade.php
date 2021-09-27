@@ -29,12 +29,17 @@
     border-radius: 35px;
   }
 
+  .barFrame {
+    background: #1c1c1c;
+    border-radius: 35px;
+  }
+
   .rellenoBtn {
     background: #343434;
   }
 </style>
 
-<form id="redirect-canvas" action="{{ route('file.store') }}" method="POST" class="d-none">
+<form id="redirect-canvas" action="{{ route('file.store') }}" method="POST" target="frmeCanvas" class="d-none">
     @csrf
     <input type="hidden" name="canvasimg" id="canvasimg">
 </form>
@@ -42,7 +47,7 @@
 <div class="container-fluid docs-buttons">
   <div class="row">
     <div class="col-2 barElements py-5">
-      <div class="col-12 text-center">
+      <div id="divRecortar" class="col-12 text-center">
         <button type="button" class="btn btn-outline-danger btn-rounded waves-effect btn-block py-3" data-method="getCroppedCanvas">
           <span class="h2 docs-tooltip text-white" data-toggle="tooltip" data-animation="false">
             CORTAR <i class="fa fa-scissors fa-2x pl-3" aria-hidden="true"></i>
@@ -179,8 +184,43 @@
         </div>
       </div>
     </div>
-    <div class="col-10 px-0">
+    <div class="col-2 barFrame py-5" style="display:none;">
+      <div id="divRegresar" class="col-12 text-center">
+        <a type="button" href="{{ route('file.edit', $lamina->tbllmnauuid ) }}" class="btn btn-outline-danger btn-rounded waves-effect btn-block py-3">
+          <span class="h3 docs-tooltip text-white" data-toggle="tooltip" data-animation="false">
+            REGRESAR <i class="fa fa-arrow-circle-left fa-2x pl-3" aria-hidden="true"></i>
+          </span>
+        </a>
+      </div>
+      <div class="col-12 text-center pt-3">
+        <button id="btnHorientacion" type="button" class="btn btn-outline-danger btn-rounded waves-effect btn-block py-3 px-2">
+          <span class="h3 docs-tooltip text-white" data-toggle="tooltip" data-animation="false">
+            HORIENTACION <i class="fa fa-arrows fa-2x pl-3" aria-hidden="true"></i>
+          </span>
+        </button>
+      </div>
+      <div class="col-12 text-center pt-3">
+        <button onclick="document.getElementById('frmeCanvas').contentWindow.imprimir_pdf()" type="button" class="btn btn-outline-danger btn-rounded waves-effect btn-block py-3">
+          <span class="h3 docs-tooltip text-white" data-toggle="tooltip" data-animation="false">
+            DESCARGA <i class="fa fa-download fa-2x pl-3" aria-hidden="true"></i>
+          </span>
+        </button>
+      </div>
+      <div class="col-12 text-center pt-3">
+        <button id="recortarIframe" type="button" class="btn btn-outline-danger btn-rounded waves-effect btn-block py-3">
+          <span class="h2 docs-tooltip text-white" data-toggle="tooltip" data-animation="false">
+            CORTAR <i class="fa fa-scissors fa-2x pl-3" aria-hidden="true"></i>
+          </span>
+        </button>
+      </div>
+    </div>
+    <div id="imgPanel" class="col-10 px-0">
       <img id="image" src="{{ asset($lamina->tbllmnaimgn) }}" class="img-fluid" alt="Picture">
+    </div>
+    <div id="imgFrame" class="col-10" style="display: none;">
+      <div class="embed-responsive embed-responsive-16by9">
+        <iframe id="frmeCanvas" name="frmeCanvas" class="embed-responsive-item"></iframe>
+      </div>
     </div>
   </div>
 </div>
@@ -354,25 +394,15 @@ $(function () {
 
         case 'getCroppedCanvas':
           if (result) {
-              // var formData = new FormData();
-              // formData.append('img', result.toDataURL(uploadedImageType));
-              // $.ajax({
-              //     url: '{{ route('file.store') }}',
-              //     type: 'POST',
-              //     dataType: 'json',
-              //     data: formData,
-              //     processData: false,
-              //     contentType: false,
-              //     success: function (data) 
-              //     {
-              //         var ruta = "{{URL::to(':id')}}";
-              //         ruta = ruta.replace(':id', url);
-              //         window.location.href = ruta;
-              //         window.location.href = data;
-              //     }
-              // });
+            $("#imgPanel").hide();
+            $("#imgFrame").show();
+            $(".barElements").hide();
+            $(".barFrame").show();
               $("#canvasimg").val(result.toDataURL(uploadedImageType));
-              setTimeout(function(){ document.getElementById('redirect-canvas').submit(); }, 500);
+              setTimeout(function(){ 
+                document.getElementById('redirect-canvas').submit(); 
+                // $("#frmeCanvas").attr('src','{{ route('file.store') }}');
+              }, 500);
           }
 
           break;
@@ -459,6 +489,36 @@ $(function () {
     });
   } else {
     $inputImage.prop('disabled', true).parent().addClass('disabled');
+  }
+
+  $("#recortarIframe").click(function() {
+    $("#imgPanel").show();
+    $("#imgFrame").hide();
+    $(".barElements").show();
+    $(".barFrame").hide();
+    // $("#image").attr('src',$("#canvasimg").val());
+    $("#image").cropper('destroy').attr('src', $("#canvasimg").val()).cropper(options);
+  });
+});
+
+$("#divRegresar").click(function() {
+  $("#imgPanel").show();
+  $("#imgFrame").hide();
+  $(".barElements").show();
+  $(".barFrame").hide();
+});
+var horientacion;
+$("#btnHorientacion").click(function() {
+  $("#frmeCanvas").contents().find("#someDiv").removeClass("hidden");
+
+  if($("#frmeCanvas").contents().find("#opcion").val() == 0){
+      $("#frmeCanvas").contents().find("#PaginaCentral").removeAttr('layout');
+      $("#frmeCanvas").contents().find("#opcion").attr('value',1);
+      horientacion = 'portrait';
+  } else {
+      $("#frmeCanvas").contents().find("#PaginaCentral").attr('layout','landscape');
+      $("#frmeCanvas").contents().find("#opcion").attr('value',0);
+      horientacion = 'landscape';
   }
 });
 
