@@ -1,0 +1,45 @@
+.btn-rounded {
+    border-radius: 25px;
+}
+input:disabled,
+input[disabled]{
+    border: 1px solid #999999 !important;
+    background-color: #cccccc !important;
+    color: #666666 !important;
+}
+.dataTables_scrollFoot {
+    border-top: 1px solid black !important;
+}
+.dataTables_scrollHead {
+    border-bottom: 1px solid black !important;
+}
+td {
+    padding-top: 1px !important;
+    padding-bottom: 1px !important;
+    margin-top:1px !important;
+    margin-bottom:1px !important; 
+}
+.page-item.active .page-link {
+    background-color: lightgrey !important;
+    border: 1px solid black !important;
+}
+.page-link {
+    color: black !important; 
+}
+.table tr {
+    cursor: pointer;
+}
+body table.dataTable tbody tr.selected td{
+    background-color: #1c4c9c !important;
+    color: #fff !important;
+}
+body table.dataTable tbody>tr:hover td {
+    background-color: #1c4c9c !important;
+    color: #fff !important;
+}
+.text-red {
+    color: red !important;
+}
+.input-danger {
+    border: 1px solid red !important;
+}

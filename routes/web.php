@@ -13,8 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('auth.login');
+Route::resource('/', 'Principal\PrincipalController');
+
+Route::get('/login', function () {
+    return view('layouts.principal');
 })->name('main');
 
 Auth::routes();
