@@ -6,18 +6,13 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
-use App\Models\Tblplan;
-use App\Models\Tbllmna;
 
-class PrincipalController extends Controller
+class ContactanosController extends Controller
 {
 
     public function index()
     {
-        return view('principal.index',[
-            'planes' => Tblplan::get(),
-            'laminas' => Tbllmna::where('tbllmnatipo','1')->paginate(2)
-        ]);
+        return view('principal.contactanos');
     }
 
     public function create()

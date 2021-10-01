@@ -27,7 +27,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item px-3">
-                        <a href="#" class="nav-link text-muted h5" href="#">Inicio</a>
+                        <a href="#" class="nav-link text-muted h5">Inicio</a>
                     </li>
                     <li class="nav-item px-3">
                         <a href="{{ route('lamina.index') }}" class="nav-link text-muted h5" href="#">Láminas</a>
@@ -36,7 +36,7 @@
                         <a href="{{ route('plan.index') }}" class="nav-link text-muted h5" href="#">Planes</a>
                     </li>
                     <li class="nav-item px-3">
-                        <a href="{#" class="nav-link text-muted h5" href="#">Contáctanos</a>
+                        <a href="{{ route('contactanos.index') }}" class="nav-link text-muted h5" href="#">Contáctanos</a>
                     </li>
                     <li class="nav-item px-3">
                         <a href="{{ route('categoria.index') }}" class="nav-link text-muted h5" href="#">Ingresar</a>
