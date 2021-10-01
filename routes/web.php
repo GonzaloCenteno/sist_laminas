@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::resource('/', 'Principal\PrincipalController');
 Route::resource('/contactanos', 'Principal\ContactanosController');
+Route::resource('/planes', 'Principal\PlanesController');
 
 Route::get('/login', function () {
     return view('layouts.principal');

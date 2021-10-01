@@ -33,7 +33,7 @@
                         <a href="{{ route('lamina.index') }}" class="nav-link text-muted h5" href="#">Láminas</a>
                     </li>
                     <li class="nav-item px-3">
-                        <a href="{{ route('plan.index') }}" class="nav-link text-muted h5" href="#">Planes</a>
+                        <a href="{{ route('planes.index') }}" class="nav-link text-muted h5" href="#">Planes</a>
                     </li>
                     <li class="nav-item px-3">
                         <a href="{{ route('contactanos.index') }}" class="nav-link text-muted h5" href="#">Contáctanos</a>
@@ -68,7 +68,146 @@
     <main role="main" class="pt-5 mt-5">
         @yield('content')
     </main>
-
+    
+    <div class="container py-5">
+        <div class="row">
+            <div class="col-4">
+                <div class="row pb-3">
+                    <div class="col">
+                        <img src="{{ asset('img/logo-parrot.png') }}" class="img-fluid">    
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <h5 class="text-muted font-weight-bold">Editorial Innova SAC</h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <h5 class="text-muted">Calle Malecon Miramar 934</h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <h5 class="text-muted">Lima Perú.</h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <h5 class="text-muted">Telf. 948600546</h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <h5 class="text-muted">Email: info@laminaseducativas.com</h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-3">
+                        face
+                    </div>
+                    <div class="col-3">
+                        twi
+                    </div>
+                    <div class="col-3">
+                        pint
+                    </div>
+                    <div class="col-3">
+                        ins
+                    </div>
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="row">
+                    <div class="col">
+                        <h4 class="font-weight-bold pb-4">Láminas Escolares</h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <h5 class="text-muted pb-2">About Us</h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <h5 class="text-muted pb-2">Contact Us</h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <h5 class="text-muted pb-2">Plugins</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="row">
+                    <div class="col">
+                        <h4 class="font-weight-bold pb-4">Recursos</h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <h5 class="text-muted pb-2">Nuestra Empresa</h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <h5 class="text-muted pb-2">Themes</h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <h5 class="text-muted pb-2">Contact Us</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="row">
+                    <div class="col">
+                        <h4 class="font-weight-bold pb-4">Novedades</h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <h5 class="text-muted pb-2">About Us</h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <h5 class="text-muted pb-2">Contact Us</h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <h5 class="text-muted pb-2">Plugins</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="row">
+                    <div class="col">
+                        <h4 class="font-weight-bold pb-4">Ayuda y Preguntas</h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <h5 class="text-muted pb-2">Nuestra Empresa</h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <h5 class="text-muted pb-2">Themes</h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <h5 class="text-muted pb-2">Contact Us</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
     <footer class="page-footer font-small black py-4">
       <div class="footer-copyright text-center">
         <a href="https://mdbootstrap.com/" class="h5"> Copyright © 2021: Innova SAC All Rights Reserved.</a>
