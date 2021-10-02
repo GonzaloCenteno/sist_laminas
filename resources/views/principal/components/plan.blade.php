@@ -2,8 +2,11 @@
     <div class="row px-5 mx-5">
         @foreach($planes as $plan)
         <div class="col-4">
-            <div class="card text-center" style="width: 18rem;">
+            <div class="card shadow-lg text-center" style="width: 18rem;border-radius: 30px; !important">
                 <div class="card-body text-center">
+                    <div class="col-12 py-3">
+                        <img src="{{ asset('img/plan.jfif') }}" class="img-fluid">
+                    </div>
                     <h2 class="card-tittle font-weight-bold">{{ $plan->tblplanprdo }} Meses</h2>
                     <h6 class="card-subtitle mb-2 text-muted">Suscripcion</h6>
                     <p class="card-title pt-3 pb-5"><span class="font-weight-bold h1">s/{{ $plan->tblplancost }}</span> <span>/{{ $plan->tblplanprdo }} meses</span></p>

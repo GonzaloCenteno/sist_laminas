@@ -43,3 +43,6 @@ body table.dataTable tbody>tr:hover td {
 .input-danger {
     border: 1px solid red !important;
 }
+.MenuActive {
+    color: #fc4464 !important;
+}

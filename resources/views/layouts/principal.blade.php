@@ -27,16 +27,16 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item px-3">
-                        <a href="#" class="nav-link text-muted h5">Inicio</a>
+                        <a href="{{ route('index') }}" class="nav-link text-muted h5 {{ request()->is('/') ? 'MenuActive' : '' }}">Inicio</a>
                     </li>
                     <li class="nav-item px-3">
                         <a href="{{ route('lamina.index') }}" class="nav-link text-muted h5" href="#">Láminas</a>
                     </li>
                     <li class="nav-item px-3">
-                        <a href="{{ route('planes.index') }}" class="nav-link text-muted h5" href="#">Planes</a>
+                        <a href="{{ route('planes.index') }}" class="nav-link text-muted h5 {{ request()->is('planes') ? 'MenuActive' : '' }}" href="#">Planes</a>
                     </li>
                     <li class="nav-item px-3">
-                        <a href="{{ route('contactanos.index') }}" class="nav-link text-muted h5" href="#">Contáctanos</a>
+                        <a href="{{ route('contactanos.index') }}" class="nav-link text-muted h5 {{ request()->is('contactanos') ? 'MenuActive' : '' }}" href="#">Contáctanos</a>
                     </li>
                     <li class="nav-item px-3">
                         <a href="{{ route('categoria.index') }}" class="nav-link text-muted h5" href="#">Ingresar</a>
@@ -68,8 +68,10 @@
     <main role="main" class="pt-5 mt-5">
         @yield('content')
     </main>
+
+    <div class="container-fluid my-5" style="border-top: 1px solid #9c9c9c;"></div>
     
-    <div class="container py-5">
+    <div class="container py-5 mt-5">
         <div class="row">
             <div class="col-4">
                 <div class="row pb-3">
@@ -104,16 +106,16 @@
                 </div>
                 <div class="row">
                     <div class="col-3">
-                        face
+                        <img src="{{ asset('img/face.png') }}" class="img-fluid">
                     </div>
                     <div class="col-3">
-                        twi
+                        <img src="{{ asset('img/twit.png') }}" class="img-fluid">
                     </div>
                     <div class="col-3">
-                        pint
+                        <img src="{{ asset('img/pint.png') }}" class="img-fluid">
                     </div>
                     <div class="col-3">
-                        ins
+                        <img src="{{ asset('img/in3.png') }}" class="img-fluid">
                     </div>
                 </div>
             </div>
