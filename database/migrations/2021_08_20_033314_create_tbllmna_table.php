@@ -15,19 +15,19 @@ class CreateTbllmnaTable extends Migration
     {
         Schema::create('tbllmna', function (Blueprint $table) {
             $table->bigIncrements('tbllmnacdgo');
-            $table->text('tbllmnacoda')->unique();
-            $table->text('tbllmnanomb')->unique();
+            $table->text('tbllmnacoda');
+            $table->text('tbllmnanomb');
             $table->text('tbllmnadesc');
             $table->text('tbllmnauuid');
-            $table->text('tbllmnaimgn');
+            $table->text('tbllmnaimgo');
+            $table->text('tbllmnaimgf')->nullable();
+            $table->text('tbllmnapdfl')->nullable();
             $table->date('tbllmnafech');
             $table->text('tbllmnatags');
             $table->enum('tbllmnatipo',[0,1])->default(0);
-            $table->bigInteger('tblctgacdgo')->unsigned();
+            $table->enum('tbllmnalmrd',[0,1])->default(1);
             $table->timestamps();
             $table->softDeletes();
-
-            $table->foreign('tblctgacdgo')->references('tblctgacdgo')->on('tblctga');
         });
     }
 

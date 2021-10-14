@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use App\Models\Tblplan;
 use App\Models\Tbllmna;
+use App\Models\Tbltags;
 
 class PrincipalController extends Controller
 {
@@ -16,6 +17,7 @@ class PrincipalController extends Controller
     {
         return view('principal.index',[
             'planes' => Tblplan::get(),
+            'tags' => Tbltags::get(),
             'laminas' => Tbllmna::where('tbllmnatipo','1')->paginate(2)
         ]);
     }

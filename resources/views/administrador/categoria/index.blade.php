@@ -2,7 +2,7 @@
 @section('title', ' - Categorias') 
 @section('content')
 
-<div class="container">
+<div class="container pt-5">
     <div class="row">
         <div id="registroCategoria" class="col d-none">
             <form id="FormularioCrearCategoria" method="POST" action="{{ route('categoria.store') }}" class="text-center" novalidate>

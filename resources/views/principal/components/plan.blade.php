@@ -1,11 +1,11 @@
 <div class="container py-5">
-    <div class="row px-5 mx-5">
-        @foreach($planes as $plan)
+    <div class="row">
+        @foreach($planes as $key => $plan)
         <div class="col-4">
-            <div class="card shadow-lg text-center" style="width: 18rem;border-radius: 30px; !important">
+            <div class="card shadow-lg text-center" style="width: 22rem;border-radius: 30px; !important">
                 <div class="card-body text-center">
                     <div class="col-12 py-3">
-                        <img src="{{ asset('img/plan.jfif') }}" class="img-fluid">
+                        <img src="{{ asset('img/plan'.$key.'.png') }}" height="150" class="d-inline-block align-top">
                     </div>
                     <h2 class="card-tittle font-weight-bold">{{ $plan->tblplanprdo }} Meses</h2>
                     <h6 class="card-subtitle mb-2 text-muted">Suscripcion</h6>

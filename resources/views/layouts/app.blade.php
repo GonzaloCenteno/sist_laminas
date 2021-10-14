@@ -19,6 +19,7 @@
     <link href="{{ asset('css/jquery-confirm.css') }}" rel="stylesheet" />
     <link href="{{ asset('css/sweetalert2.css') }}" rel="stylesheet">
     <link href="{{ asset('css/cropper.css') }}" rel="stylesheet" />
+    <link href="{{ asset('select2-master/dist/css/select2.min.css') }}" rel="stylesheet" />
     <style>
 		.btn-rounded {
 			border-radius: 25px;
@@ -73,10 +74,10 @@
             @yield('content-login')
         </div>
     @else
-        <nav class="navbar navbar-expand-lg navbar-dark indigo fixed-top">
+        <nav class="navbar navbar-expand-lg fixed-top" style="background: white;">
 
             <!-- Navbar brand -->
-            <a class="navbar-brand" href="#"><img src="{{ asset('img/logo-parrot.png') }}" height="60" class="d-inline-block align-top"></a>
+            <a class="navbar-brand" href="#"><img src="{{ asset('img/logo-parrot.png') }}" height="70" class="d-inline-block align-top"></a>
 
             <!-- Collapse button -->
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
@@ -90,29 +91,38 @@
                 <ul class="navbar-nav mr-auto">
                     @if(Auth::user()->tblusrotipo == 'ADM' || Auth::user()->tblusrotipo == 'SPA')
                         <li class="nav-item">
-                            <a href="{{ route('plan.index') }}" class="nav-link" href="#">Planes</a>
+                            <a href="{{ route('plan.index') }}" class="nav-link text-muted h5" href="#">Planes</a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('categoria.index') }}" class="nav-link" href="#">Categorias</a>
+                            <a href="{{ route('categoria.index') }}" class="nav-link text-muted h5" href="#">Categorias</a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('lamina.index') }}" class="nav-link" href="#">Laminas</a>
+                            <a href="{{ route('tag.index') }}" class="nav-link text-muted h5" href="#">Tags</a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('usuario.index') }}" class="nav-link" href="#">Usuarios</a>
+                            <a href="{{ route('lamina.index') }}" class="nav-link text-muted h5" href="#">Laminas</a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('factura.index') }}" class="nav-link" href="#">Facturas</a>
+                            <a href="{{ route('usuario.index') }}" class="nav-link text-muted h5" href="#">Usuarios</a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('file.index') }}" class="nav-link" href="#">Mis Laminas</a>
+                            <a href="{{ route('factura.index') }}" class="nav-link text-muted h5" href="#">Facturas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('file.index') }}" class="nav-link text-muted h5" href="#">Mis Laminas</a>
                         </li>
                     @else
-                        <li class="nav-item">
-                            <a href="{{ route('file.index') }}" class="nav-link" href="#">Mis Laminas</a>
+                        <li class="nav-item px-3">
+                            <a href="{{ route('file.index') }}" class="nav-link text-muted h5 {{ request()->is('/file') ? 'MenuActive' : '' }}" href="#">Láminas</a>
                         </li>
-                        <li class="nav-item">
-                            <a href="{{ route('file.index') }}" class="nav-link" href="#">Mis Favoritos</a>
+                        <li class="nav-item px-3">
+                            <a href="{{ route('file.index') }}" class="nav-link text-muted h5 " href="#">Favoritos</a>
+                        </li>
+                        <li class="nav-item px-3">
+                            <a href="#" class="nav-link text-muted h5 {{ request()->is('planes') ? 'MenuActive' : '' }}" href="#">Planes</a>
+                        </li>
+                        <li class="nav-item px-3">
+                            <a href="#" class="nav-link text-muted h5 {{ request()->is('contactanos') ? 'MenuActive' : '' }}" href="#">Contáctanos</a>
                         </li>
                     @endif
                 </ul>
@@ -131,10 +141,24 @@
                             <span class="nav-link my-0 py-0">|</span>
                         </li>
                     @endif
-                    <li class="nav-item">
-                        <span class="nav-link">Bienvenido: {{ Auth::user()->tblusronomb }}</span>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle text-muted h5" id="navbarDropdownMenuLink-333" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-user"> {{ Auth::user()->tblusronomb }}</i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
+                            <a class="dropdown-item" href="#">Editar Perfil</a>
+                            <a class="dropdown-item" href="#">Plan</a>
+                            <a class="dropdown-item" href="#">Descargas</a>
+                            <a class="dropdown-item" href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                                                document.getElementById('logout-form').submit();">Cerrar Sesion</a>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
+                        </div>
                     </li>
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a class="btn btn-sm btn-rounded btn-secondary waves-effect nav-link" href="{{ route('logout') }}"
                             onclick="event.preventDefault();
                                             document.getElementById('logout-form').submit();">CERRAR SESION</a>
@@ -142,7 +166,7 @@
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                             @csrf
                         </form>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
             <!-- Links -->
@@ -153,6 +177,12 @@
     <main class="py-5 my-5">
         @yield('content')
     </main>
+    
+    <footer class="page-footer font-small black py-4 fixed-bottom">
+      <div class="footer-copyright text-center">
+        <a href="https://mdbootstrap.com/" class="h5"> Copyright © 2021: Innova SAC All Rights Reserved.</a>
+      </div>
+    </footer>
 </body>
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
@@ -163,133 +193,8 @@
     <script src="{{ asset('js/jquery-confirm.js') }}"></script> 
     <script src="{{ asset('js/sweetalert2.js') }}"></script>
     <script src="{{ asset('js/cropper.js') }}"></script> 
-    
-    <script>
-        $(function () {
-            $.ajaxSetup({
-                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-                beforeSend:function()
-                {            
-                    alertas(1);
-                },
-                error: function (x, status, error) {
-                    console.log(x, status, error);
-                    if (x.status == 422) {
-                        alertas(3);
-                        var data = x.responseJSON.errors;
-                        for(let i in data){
-                            mostrarErrores(i,data[i][0]);
-                        }
-                    }
-                    else {
-                        swal({
-                            type: 'error',
-                            title: 'OCURRIO UN PROBLEMA',
-                            html: x.responseText,
-                            allowOutsideClick: false,
-                            allowEscapeKey:false,
-                            confirmButtonColor: '#3085d6',
-                            confirmButtonText: 'ACEPTAR'
-                        });
-                    }
-                }
-            });
-        });
-
-        function limpiarErrores(nombre) {
-            $("#error_"+nombre).hide();
-            $("#error_"+nombre).text('');
-            $("#"+nombre).removeClass('input-danger is-invalid');
-        }
-
-        function mostrarErrores(nombre, error) {
-            $("#error_"+nombre).show();
-            $("#error_"+nombre).text(error);
-            $("#"+nombre).addClass('input-danger is-invalid');
-        }
-
-        function alertas(tipo, url) {
-            if (tipo === 1) {
-                swal({
-                    title: "PROCESANDO INFORMACION",
-                    allowOutsideClick: false,
-                    allowEscapeKey:false,
-                    allowEnterKey:false,
-                    showConfirmButton: false,
-                    onOpen: function () {
-                      swal.showLoading()
-                    }
-                  }).then(
-                    function () {},
-                    function (dismiss) {
-                      if (dismiss === 'timer') {
-                        console.log('I was closed by the timer')
-                      }
-                    }) 
-            } else if(tipo === 2) {
-                let timerInterval
-                swal({
-                    type: 'success',
-                    title: 'EXITO',
-                    timer: 1600,
-                    allowOutsideClick: false,
-                    allowEscapeKey:false,
-                    showConfirmButton: false,
-                    onOpen: () => {
-                        timerInterval = setInterval(() => {
-                        }, 100)
-                    },
-                    onClose: () => {
-                        var ruta = "{{URL::to(':id')}}";
-                        ruta = ruta.replace(':id', url);
-                        window.location.href = ruta;
-                        clearInterval(timerInterval)
-                    }
-                });   
-            } else if(tipo === 3) {
-                swal({
-                    type: 'warning',
-                    title: 'FALTA COMPLETAR DATOS EN EL FORMULARIO',
-                    timer: 1200,
-                    allowOutsideClick: false,
-                    allowEscapeKey:false,
-                    showConfirmButton: false,
-                    onOpen: () => {
-                        timerInterval = setInterval(() => {
-                        }, 100)
-                    },
-                    onClose: () => {
-                        clearInterval(timerInterval)
-                    }
-                });
-            } else if(tipo === 4) {
-                swal({
-                    type: 'success',
-                    title: 'EXITO',
-                    timer: 1400,
-                    allowOutsideClick: false,
-                    allowEscapeKey:false,
-                    showConfirmButton: false,
-                    onOpen: () => {
-                        timerInterval = setInterval(() => {
-                        }, 100)
-                    },
-                    onClose: () => {
-                        clearInterval(timerInterval)
-                    }
-                });   
-            } else {
-                swal({
-                    type: 'error',
-                    title: 'OCURRIO UN PROBLEMA',
-                    allowOutsideClick: false,
-                    allowEscapeKey:false,
-                    confirmButtonColor: '#3085d6',
-                    confirmButtonText: 'ACEPTAR'
-                }); 
-            }
-        }
-    </script>
-
+    <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+    <script src="{{ asset('select2-master/dist/js/select2.min.js') }}"></script>
+    @include('layouts.messages')
     @yield('page-js-script')
 </html>

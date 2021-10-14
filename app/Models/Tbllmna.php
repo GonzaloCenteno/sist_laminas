@@ -16,21 +16,44 @@ class Tbllmna extends Model
     protected $primaryKey='tbllmnacdgo';
 
     protected $fillable = [
-        'tbllmnacoda','tbllmnanomb','tbllmnadesc','tbllmnauuid','tbllmnaimgn','tbllmnafech','tbllmnatipo','tblctgacdgo','tbllmnatags'
+        'tbllmnacoda','tbllmnanomb','tbllmnadesc','tbllmnauuid','tbllmnaimgo','tbllmnaimgf','tbllmnapdfl','tbllmnafech','tbllmnatipo','tbllmnatags'
     ];
 
-    public function categoria()
+    // public function categoria()
+    // {
+    //     return $this->hasOne(Tblctga::class,'tblctgacdgo','tblctgacdgo');
+    // }
+
+    public function categorias()
     {
-        return $this->hasOne(Tblctga::class,'tblctgacdgo','tblctgacdgo');
+        return $this->belongsToMany(Tblctga::class,'tbllmct','tbllmnacdgo', 'tblctgacdgo');
     }
 
-    public function setTbllmnaimgnAttribute($imagen){
+    public function setTbllmnaimgoAttribute($imagen){
         if($imagen !== null && $imagen !== '')
             $bandera = Str::random(12);
             $filename = $imagen->getClientOriginalName();
             $fileserver = $bandera.'_'.$filename;
             $imagen->move(public_path('adjuntos/'), htmlentities($fileserver));
-            $this->attributes['tbllmnaimgn'] = 'adjuntos/'.$fileserver;
+            $this->attributes['tbllmnaimgo'] = 'adjuntos/'.$fileserver;
+    }
+
+    public function setTbllmnaimgfAttribute($imagen){
+        if($imagen !== null && $imagen !== '')
+            $bandera = Str::random(12);
+            $filename = $imagen->getClientOriginalName();
+            $fileserver = $bandera.'_'.$filename;
+            $imagen->move(public_path('adjuntos/'), htmlentities($fileserver));
+            $this->attributes['tbllmnaimgf'] = 'adjuntos/'.$fileserver;
+    }
+
+    public function setTbllmnapdflAttribute($imagen){
+        if($imagen !== null && $imagen !== '')
+            $bandera = Str::random(12);
+            $filename = $imagen->getClientOriginalName();
+            $fileserver = $bandera.'_'.$filename;
+            $imagen->move(public_path('adjuntos/'), htmlentities($fileserver));
+            $this->attributes['tbllmnapdfl'] = 'adjuntos/'.$fileserver;
     }
 
     public function getTbllmnatipoAttribute($value)

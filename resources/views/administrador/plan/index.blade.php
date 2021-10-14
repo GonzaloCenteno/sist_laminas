@@ -2,7 +2,7 @@
 @section('title', ' - Planes') 
 @section('content')
 
-<div class="container">
+<div class="container pt-5">
     <div class="row">
         <div id="registroPlan" class="col d-none">
             <form id="FormularioCrearPlan" method="POST" action="{{ route('plan.store') }}" class="text-center" novalidate>

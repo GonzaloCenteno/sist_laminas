@@ -13,13 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::resource('/', 'Principal\PrincipalController');
-Route::resource('/contactanos', 'Principal\ContactanosController');
-Route::resource('/planes', 'Principal\PlanesController');
+Route::resource('/', 'principal\PrincipalController');
+Route::resource('/contactanos', 'principal\ContactanosController');
+Route::resource('/planes', 'principal\PlanesController');
 
-Route::get('/login', function () {
-    return view('layouts.principal');
-})->name('main');
+// Route::get('/login', function () {
+//     return view('layouts.principal');
+// })->name('main');
 
 Auth::routes();
 
@@ -29,6 +29,7 @@ Route::group(['namespace' => 'administrador', 'middleware' => ['auth', 'acceso',
     Route::resource('/usuario', 'UsuarioController');
     Route::resource('/plan', 'PlanController');
     Route::resource('/factura', 'FacturaController');
+    Route::resource('/tag', 'TagController');
 });
 
 Route::group(['namespace' => 'usuario', 'middleware' => ['auth', 'acceso', 'web']], function() {

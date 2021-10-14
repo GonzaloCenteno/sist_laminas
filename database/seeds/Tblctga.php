@@ -14,142 +14,132 @@ class Tblctga extends Seeder
     public function run()
     {
         DB::table('tblctga')->insert([
-            'tblctgadesc'  => 'EDUCACIÓN CÍVICA, LISTADO NUMÉRICO',
+            'tblctgadesc'  => 'EDUCACIÓN CÍVICA',
             'created_at'   => Carbon::now(),
             'updated_at'   => Carbon::now()
         ]);
         DB::table('tblctga')->insert([
-            'tblctgadesc'  => 'ANATOMÍA, LISTADO NUMÉRICO',
+            'tblctgadesc'  => 'ANATOMÍA',
             'created_at'   => Carbon::now(),
             'updated_at'   => Carbon::now()
         ]);
         DB::table('tblctga')->insert([
-            'tblctgadesc'  => 'BIOLOGÍA, LISTADO NUMÉRICO',
+            'tblctgadesc'  => 'BIOLOGÍA',
             'created_at'   => Carbon::now(),
             'updated_at'   => Carbon::now()
         ]);
         DB::table('tblctga')->insert([
-            'tblctgadesc'  => 'BOTANICA, LISTADO NUMÉRICO',
+            'tblctgadesc'  => 'BOTANICA',
             'created_at'   => Carbon::now(),
             'updated_at'   => Carbon::now()
         ]);
         DB::table('tblctga')->insert([
-            'tblctgadesc'  => 'ECOLOGIA, LISTADO NUMÉRICO',
+            'tblctgadesc'  => 'ECOLOGIA',
             'created_at'   => Carbon::now(),
             'updated_at'   => Carbon::now()
         ]);
         DB::table('tblctga')->insert([
-            'tblctgadesc'  => 'EDUCACIÓN CÍVICA, LISTADO NUMÉRICO, SALUD Y SEXUALIDAD',
+            'tblctgadesc'  => 'EDUCACIÓN CÍVICA, SALUD Y SEXUALIDAD',
             'created_at'   => Carbon::now(),
             'updated_at'   => Carbon::now()
         ]);
         DB::table('tblctga')->insert([
-            'tblctgadesc'  => 'EDUCACIÓN FISICA, LISTADO NUMÉRICO',
+            'tblctgadesc'  => 'EDUCACIÓN FISICA',
             'created_at'   => Carbon::now(),
             'updated_at'   => Carbon::now()
         ]);
         DB::table('tblctga')->insert([
-            'tblctgadesc'  => 'EDUCACIÓN INICIAL , LISTADO NUMÉRICO',
+            'tblctgadesc'  => 'EDUCACIÓN INICIAL ',
             'created_at'   => Carbon::now(),
             'updated_at'   => Carbon::now()
         ]);
         DB::table('tblctga')->insert([
-            'tblctgadesc'  => 'EDUCACIÓN POR EL ARTE, LISTADO NUMÉRICO',
+            'tblctgadesc'  => 'EDUCACIÓN POR EL ARTE',
             'created_at'   => Carbon::now(),
             'updated_at'   => Carbon::now()
         ]);
         DB::table('tblctga')->insert([
-            'tblctgadesc'  => 'EDUCACIÓN POR EL ARTE, LISTADO NUMÉRICO, PERSONAJES ILUSTRES',
+            'tblctgadesc'  => 'EDUCACIÓN POR EL ARTE, PERSONAJES ILUSTRES',
             'created_at'   => Carbon::now(),
             'updated_at'   => Carbon::now()
         ]);
         DB::table('tblctga')->insert([
-            'tblctgadesc'  => 'EDUCACIÓN RELIGIOSA, LISTADO NUMÉRICO',
+            'tblctgadesc'  => 'EDUCACIÓN RELIGIOSA',
             'created_at'   => Carbon::now(),
             'updated_at'   => Carbon::now()
         ]);
         DB::table('tblctga')->insert([
-            'tblctgadesc'  => 'EDUCACIÓN RELIGIOSA, LISTADO NUMÉRICO, PERSONAJES ILUSTRES',
+            'tblctgadesc'  => 'EDUCACIÓN RELIGIOSA, PERSONAJES ILUSTRES',
             'created_at'   => Carbon::now(),
             'updated_at'   => Carbon::now()
         ]);
         DB::table('tblctga')->insert([
-            'tblctgadesc'  => 'FÍSICA Y QUÍMICA, LISTADO NUMÉRICO',
+            'tblctgadesc'  => 'FÍSICA Y QUÍMICA',
             'created_at'   => Carbon::now(),
             'updated_at'   => Carbon::now()
         ]);
         DB::table('tblctga')->insert([
-            'tblctgadesc'  => 'GEOGRAFÍA DEL PERÚ, LISTADO NUMÉRICO',
+            'tblctgadesc'  => 'GEOGRAFÍA DEL PERÚ',
             'created_at'   => Carbon::now(),
             'updated_at'   => Carbon::now()
         ]);
         DB::table('tblctga')->insert([
-            'tblctgadesc'  => 'GEOGRAFÍA DEL UNIVERSAL Y DEL MUNDO, LISTADO NUMÉRICO',
+            'tblctgadesc'  => 'GEOGRAFÍA DEL UNIVERSAL Y DEL MUNDO',
             'created_at'   => Carbon::now(),
             'updated_at'   => Carbon::now()
         ]);
         DB::table('tblctga')->insert([
-            'tblctgadesc'  => 'HISTORIA DEL PERÚ, LISTADO NUMÉRICO',
+            'tblctgadesc'  => 'HISTORIA DEL PERÚ',
             'created_at'   => Carbon::now(),
             'updated_at'   => Carbon::now()
         ]);
         DB::table('tblctga')->insert([
-            'tblctgadesc'  => 'HISTORIA DEL PERÚ, LISTADO NUMÉRICO, PERSONAJES ILUSTRES',
+            'tblctgadesc'  => 'HISTORIA DEL PERÚ, PERSONAJES ILUSTRES',
             'created_at'   => Carbon::now(),
             'updated_at'   => Carbon::now()
         ]);
         DB::table('tblctga')->insert([
-            'tblctgadesc'  => 'HISTORIA UNIVERSAL, LISTADO NUMÉRICO',
+            'tblctgadesc'  => 'HISTORIA UNIVERSAL',
             'created_at'   => Carbon::now(),
             'updated_at'   => Carbon::now()
         ]);
         DB::table('tblctga')->insert([
-            'tblctgadesc'  => 'HISTORIA UNIVERSAL, LISTADO NUMÉRICO, PERSONAJES ILUSTRES',
+            'tblctgadesc'  => 'LENGUAJE Y LITERATURA',
             'created_at'   => Carbon::now(),
             'updated_at'   => Carbon::now()
         ]);
         DB::table('tblctga')->insert([
-            'tblctgadesc'  => 'HISTORIA UNIVERSAL, PERSONAJES ILUSTRES, LISTADO NUMÉRICO',
+            'tblctgadesc'  => 'LENGUAJE Y LITERATURA, PERSONAJES ILUSTRES',
             'created_at'   => Carbon::now(),
             'updated_at'   => Carbon::now()
         ]);
         DB::table('tblctga')->insert([
-            'tblctgadesc'  => 'LENGUAJE Y LITERATURA, LISTADO NUMÉRICO',
+            'tblctgadesc'  => 'LÓGICO MATEMÁTICO',
             'created_at'   => Carbon::now(),
             'updated_at'   => Carbon::now()
         ]);
         DB::table('tblctga')->insert([
-            'tblctgadesc'  => 'LENGUAJE Y LITERATURA, LISTADO NUMÉRICO, PERSONAJES ILUSTRES',
+            'tblctgadesc'  => 'OBRAS LITERARIAS',
             'created_at'   => Carbon::now(),
             'updated_at'   => Carbon::now()
         ]);
         DB::table('tblctga')->insert([
-            'tblctgadesc'  => 'LÓGICO MATEMÁTICO, LISTADO NUMÉRICO',
+            'tblctgadesc'  => 'PERSONAJES ILUSTRES',
             'created_at'   => Carbon::now(),
             'updated_at'   => Carbon::now()
         ]);
         DB::table('tblctga')->insert([
-            'tblctgadesc'  => 'OBRAS LITERARIAS, LISTADO NUMÉRICO',
+            'tblctgadesc'  => 'PERSONAJES ILUSTRES, PERSONAJES ILUSTRES',
             'created_at'   => Carbon::now(),
             'updated_at'   => Carbon::now()
         ]);
         DB::table('tblctga')->insert([
-            'tblctgadesc'  => 'PERSONAJES ILUSTRES, LISTADO NUMÉRICO',
+            'tblctgadesc'  => 'SALUD Y SEXUALIDAD',
             'created_at'   => Carbon::now(),
             'updated_at'   => Carbon::now()
         ]);
         DB::table('tblctga')->insert([
-            'tblctgadesc'  => 'PERSONAJES ILUSTRES, LISTADO NUMÉRICO, PERSONAJES ILUSTRES',
-            'created_at'   => Carbon::now(),
-            'updated_at'   => Carbon::now()
-        ]);
-        DB::table('tblctga')->insert([
-            'tblctgadesc'  => 'SALUD Y SEXUALIDAD, LISTADO NUMÉRICO',
-            'created_at'   => Carbon::now(),
-            'updated_at'   => Carbon::now()
-        ]);
-        DB::table('tblctga')->insert([
-            'tblctgadesc'  => 'ZOOLOGÍA, LISTADO NUMÉRICO',
+            'tblctgadesc'  => 'ZOOLOGÍA',
             'created_at'   => Carbon::now(),
             'updated_at'   => Carbon::now()
         ]);
